@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://l6umrmi4yfg6"]
+
+[ext_resource type="Texture2D" uid="uid://ba7ttbob2ygco" path="res://Assets/Mario.png" id="1_pmqej"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ue2y"]
+size = Vector2(20, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnnry"]
+atlas = ExtResource("1_pmqej")
+region = Rect2(0, 8, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6je0m"]
+atlas = ExtResource("1_pmqej")
+region = Rect2(20, 8, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0had"]
+atlas = ExtResource("1_pmqej")
+region = Rect2(38, 8, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmods"]
+atlas = ExtResource("1_pmqej")
+region = Rect2(56, 8, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0ic7m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnnry")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6je0m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s0had")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mmods")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wih1i"]
+size = Vector2(12, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wnhh"]
+atlas = ExtResource("1_pmqej")
+region = Rect2(0, 32, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_glbki"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wnhh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmqej"]
+atlas = ExtResource("1_pmqej")
+region = Rect2(0, 140, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5ue2y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmqej")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Mario" type="Node2D" unique_id=230384012]
+
+[node name="Small Mario" type="Node2D" parent="." unique_id=1535573355]
+visible = false
+
+[node name="Small Mario" type="Area2D" parent="Small Mario" unique_id=339919876]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Small Mario/Small Mario" unique_id=473340959]
+position = Vector2(0, 1)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_5ue2y")
+
+[node name="Anim (Small Mario)" type="AnimatedSprite2D" parent="Small Mario" unique_id=1578362423]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(0, -1)
+sprite_frames = SubResource("SpriteFrames_0ic7m")
+animation = &"idle"
+
+[node name="Big Mario" type="Node2D" parent="." unique_id=2120501886]
+
+[node name="Big Mario" type="Area2D" parent="Big Mario" unique_id=542168971]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Big Mario/Big Mario" unique_id=2077707959]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_wih1i")
+
+[node name="Anim (Big Mario)" type="AnimatedSprite2D" parent="Big Mario" unique_id=835469358]
+texture_filter = 1
+texture_repeat = 1
+sprite_frames = SubResource("SpriteFrames_glbki")
+
+[node name="Anim(Fire Mario)" type="AnimatedSprite2D" parent="Big Mario" unique_id=888674841]
+texture_filter = 1
+texture_repeat = 1
+sprite_frames = SubResource("SpriteFrames_5ue2y")
