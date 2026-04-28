@@ -2,25 +2,28 @@ class_name Mario extends CharacterBody2D
 @onready var shape: CollisionShape2D = $Collision
 @onready var small_mario: Node2D = $"Small Mario"
 @onready var big_mario: Node2D = $"Big Mario"
-
-var state_list : Array[int] = [0, 1, 2]
-var curr_state: int
-const ACCEL = 30
-const FRICTION = 0.75
+const ACCEL = 1200
 const MAX_SPEED = 250
-const JUMP_VELOCITY = -300.0
-const GRAVITY = 900
+const JUMP_FORCE: int = 500
+
+var state_list : Array[int] = [0, 1, 2] 
+var curr_state: int = 0 
+var jump_time: float = 0.0 
+var dir:float = 0.0
+
+func _ready() -> void: 
+	Global.mario = self
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
-		velocity.y += GRAVITY * delta
+		velocity.y += get_gravity().y * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
+	if Input.is_action_just_pressed('jump'):
+		velocity.y = -JUMP_FORCE
 	
+	#Handle Crouch
 	if Input.is_action_just_pressed("crouch") and is_on_floor():
 		shape.shape.set_size(Vector2(12,12))
 		shape.position.y = -6
@@ -29,16 +32,11 @@ func _physics_process(delta: float) -> void:
 			shape.shape.set_size(Vector2(12,24))
 			shape.position.y = -12
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	
-	if Input.is_action_pressed("right"):
-		velocity += ACCEL * Vector2.RIGHT
-	elif Input.is_action_pressed("left"):
-		velocity += ACCEL * Vector2.LEFT
-	else:
-		velocity.x *= FRICTION
-	velocity.x = clamp(velocity.x, -MAX_SPEED, MAX_SPEED)
+	dir = Input.get_axis('left', 'right')
+	if dir != 0.0:
+		velocity.x = move_toward(velocity.x, dir * MAX_SPEED, ACCEL * delta)
+	if dir == 0.0:
+		velocity.x = move_toward(velocity.x, 0, ACCEL * delta)
 
 	if Input.is_key_pressed(KEY_Q):
 		set_big()
