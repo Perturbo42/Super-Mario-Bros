@@ -1,9 +1,7 @@
 [gd_scene format=3 uid="uid://l6umrmi4yfg6"]
 
+[ext_resource type="Script" uid="uid://dqtuva674ssoe" path="res://Scripts/mario.gd" id="1_5ue2y"]
 [ext_resource type="Texture2D" uid="uid://ba7ttbob2ygco" path="res://Assets/Mario.png" id="1_pmqej"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ue2y"]
-size = Vector2(20, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wnnry"]
 atlas = ExtResource("1_pmqej")
@@ -46,9 +44,6 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wih1i"]
-size = Vector2(12, 24)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_8wnhh"]
 atlas = ExtResource("1_pmqej")
 region = Rect2(0, 32, 16, 32)
@@ -79,17 +74,15 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Mario" type="Node2D" unique_id=230384012]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wih1i"]
+size = Vector2(12, 12)
+
+[node name="Mario" type="CharacterBody2D" unique_id=339477559]
+collision_mask = 6
+script = ExtResource("1_5ue2y")
 
 [node name="Small Mario" type="Node2D" parent="." unique_id=1535573355]
-visible = false
-
-[node name="Small Mario" type="Area2D" parent="Small Mario" unique_id=339919876]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Small Mario/Small Mario" unique_id=473340959]
-position = Vector2(0, 1)
-scale = Vector2(0.5, 0.5)
-shape = SubResource("RectangleShape2D_5ue2y")
+position = Vector2(0, -7)
 
 [node name="Anim (Small Mario)" type="AnimatedSprite2D" parent="Small Mario" unique_id=1578362423]
 texture_filter = 1
@@ -99,12 +92,8 @@ sprite_frames = SubResource("SpriteFrames_0ic7m")
 animation = &"idle"
 
 [node name="Big Mario" type="Node2D" parent="." unique_id=2120501886]
-
-[node name="Big Mario" type="Area2D" parent="Big Mario" unique_id=542168971]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Big Mario/Big Mario" unique_id=2077707959]
-position = Vector2(0, 4)
-shape = SubResource("RectangleShape2D_wih1i")
+visible = false
+position = Vector2(0, -16)
 
 [node name="Anim (Big Mario)" type="AnimatedSprite2D" parent="Big Mario" unique_id=835469358]
 texture_filter = 1
@@ -115,3 +104,7 @@ sprite_frames = SubResource("SpriteFrames_glbki")
 texture_filter = 1
 texture_repeat = 1
 sprite_frames = SubResource("SpriteFrames_5ue2y")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=2077707959]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_wih1i")
