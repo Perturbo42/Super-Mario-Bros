@@ -13,6 +13,7 @@ config_version=5
 config/name="Super Mario Bros"
 run/main_scene="uid://dowrwrhgkguin"
 config/features=PackedStringArray("4.6", "Forward Plus")
+boot_splash/bg_color=Color(0.36078432, 0.5803922, 0.9882353, 1)
 config/icon="res://icon.svg"
 
 [autoload]
