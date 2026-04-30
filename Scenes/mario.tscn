@@ -78,7 +78,7 @@ animations = [{
 size = Vector2(12, 12)
 
 [node name="Mario" type="CharacterBody2D" unique_id=339477559]
-collision_mask = 6
+collision_mask = 12
 script = ExtResource("1_5ue2y")
 
 [node name="Small Mario" type="Node2D" parent="." unique_id=1535573355]
@@ -106,5 +106,11 @@ texture_repeat = 1
 sprite_frames = SubResource("SpriteFrames_5ue2y")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=2077707959]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_wih1i")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2076627]
+
+[node name="Collision" type="CollisionShape2D" parent="Area2D" unique_id=768367873]
 position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_wih1i")

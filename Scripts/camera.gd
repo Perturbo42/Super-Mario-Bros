@@ -16,3 +16,9 @@ func _process(delta: float) -> void:
 		global_position.x = last_pos
 	last_pos = global_position.x
 	pass
+
+
+func _on_right_side_body_entered(body: Node2D) -> void:
+	if body is Enemy:
+		body.loaded = true
+	pass # Replace with function body.

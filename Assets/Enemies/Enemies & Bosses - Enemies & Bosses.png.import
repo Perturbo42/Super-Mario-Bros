@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6lydx1iglqin"
-path="res://.godot/imported/Enemies & Bosses - Enemies & Bosses.png-54d0b8d11c84b54e1a13afced406af30.ctex"
+uid="uid://c6x55wfn2j73g"
+path="res://.godot/imported/Enemies & Bosses - Enemies & Bosses.png-ac579eb5ce5a422f4e6a778af67aae20.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Enemies & Bosses - Enemies & Bosses.png"
-dest_files=["res://.godot/imported/Enemies & Bosses - Enemies & Bosses.png-54d0b8d11c84b54e1a13afced406af30.ctex"]
+source_file="res://Assets/Enemies/Enemies & Bosses - Enemies & Bosses.png"
+dest_files=["res://.godot/imported/Enemies & Bosses - Enemies & Bosses.png-ac579eb5ce5a422f4e6a778af67aae20.ctex"]
 
 [params]
 

@@ -5,12 +5,26 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_375tr"]
 size = Vector2(20, 520)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f1cf7"]
+size = Vector2(20, 493)
+
 [node name="Camera" type="Camera2D" unique_id=1800756633]
 script = ExtResource("1_375tr")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=752022105]
-collision_layer = 4
+[node name="Leftside" type="StaticBody2D" parent="." unique_id=752022105]
+collision_layer = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1515722369]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Leftside" unique_id=1515722369]
 position = Vector2(-266, -5)
 shape = SubResource("RectangleShape2D_375tr")
+
+[node name="RightSide" type="Area2D" parent="." unique_id=527338071]
+position = Vector2(266, 0)
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightSide" unique_id=1506026884]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_f1cf7")
+
+[connection signal="body_entered" from="RightSide" to="." method="_on_right_side_body_entered"]
