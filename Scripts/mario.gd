@@ -1,20 +1,29 @@
 class_name Mario extends CharacterBody2D
-@onready var shape: CollisionShape2D = $Collision
+signal dead
+@onready var small_coll: CollisionShape2D = $"Small Collision"
+@onready var big_coll: CollisionShape2D = $"Big Collision"
+@onready var small_area: Area2D = $"Small Mario/Small Area"
+@onready var big_area: Area2D = $"Big Mario/Big Area"
 @onready var small_mario: Node2D = $"Small Mario"
 @onready var big_mario: Node2D = $"Big Mario"
 const ACCEL = 1200
 const MAX_SPEED = 250
-const JUMP_FORCE: int = 500
+const JUMP_FORCE: float = 500
 
+var active_area: int
 var state_list : Array[int] = [0, 1, 2] 
 var curr_state: int = 0 
 var jump_time: float = 0.0 
-var dir:float = 0.0
+var dir: float = 0.0
 
 func _ready() -> void: 
 	Global.mario = self
+	curr_state = 0
+	set_small()
 
 func _physics_process(delta: float) -> void:
+	if curr_state == -1:
+		return
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += get_gravity().y * delta
@@ -25,12 +34,14 @@ func _physics_process(delta: float) -> void:
 	
 	#Handle Crouch
 	if Input.is_action_just_pressed("crouch") and is_on_floor():
-		shape.shape.set_size(Vector2(12,12))
-		shape.position.y = -6
+		small_coll.set_deferred("disabled", false)
+		big_coll.set_deferred("disabled", true)
+		active_area = 0
 	elif Input.is_action_just_released("crouch") and is_on_floor():
 		if curr_state != 0:
-			shape.shape.set_size(Vector2(12,24))
-			shape.position.y = -12
+			small_coll.set_deferred("disabled", true)
+			big_coll.set_deferred("disabled", false)
+			active_area = 1
 
 	dir = Input.get_axis('left', 'right')
 	if dir != 0.0:
@@ -47,14 +58,42 @@ func _physics_process(delta: float) -> void:
 
 func set_small():
 	curr_state = 0
-	shape.shape.set_size(Vector2(12,12))
-	shape.position.y = -6
+	active_area = 0
+	small_coll.set_deferred("disabled", false)
+	big_coll.set_deferred("disabled", true)
 	small_mario.visible = true
 	big_mario.visible = false
 
 func set_big():
 	curr_state = 1
-	shape.shape.set_size(Vector2(12,24))
-	shape.position.y = -12
+	active_area = 1
+	small_coll.set_deferred("disabled", true)
+	big_coll.set_deferred("disabled", false)
 	small_mario.visible = false
 	big_mario.visible = true
+
+func take_damage():
+	if curr_state == 0:
+		die()
+	elif curr_state == 1 or curr_state == 2:
+		set_small()
+
+func die():
+	curr_state = -1
+	dead.emit()
+	
+	pass
+
+func _on_any_area_entered(area: Area2D, hit: int) -> void:
+	if hit != active_area:
+		return
+	print(area.name)
+	if area.get_parent() is Enemy:
+		var enemy = area.get_parent()
+		if enemy.is_alive:
+			if velocity.y > 0:
+				enemy.die()
+				velocity.y = -JUMP_FORCE/2
+			else:
+				take_damage()
+	pass # Replace with function body.

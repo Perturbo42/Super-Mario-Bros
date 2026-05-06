@@ -44,6 +44,9 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ue2y"]
+size = Vector2(10, 12)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_8wnhh"]
 atlas = ExtResource("1_pmqej")
 region = Rect2(0, 32, 16, 32)
@@ -74,8 +77,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wih1i"]
-size = Vector2(12, 12)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wnnry"]
+size = Vector2(12, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6je0m"]
+size = Vector2(10, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s0had"]
+size = Vector2(12, 24)
 
 [node name="Mario" type="CharacterBody2D" unique_id=339477559]
 collision_mask = 12
@@ -91,8 +100,15 @@ position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_0ic7m")
 animation = &"idle"
 
+[node name="Small Area" type="Area2D" parent="Small Mario" unique_id=1759140544]
+position = Vector2(0, 7)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Small Mario/Small Area" unique_id=225439243]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_5ue2y")
+
 [node name="Big Mario" type="Node2D" parent="." unique_id=2120501886]
-visible = false
 position = Vector2(0, -16)
 
 [node name="Anim (Big Mario)" type="AnimatedSprite2D" parent="Big Mario" unique_id=835469358]
@@ -105,12 +121,20 @@ texture_filter = 1
 texture_repeat = 1
 sprite_frames = SubResource("SpriteFrames_5ue2y")
 
-[node name="Collision" type="CollisionShape2D" parent="." unique_id=2077707959]
-position = Vector2(0, -6)
-shape = SubResource("RectangleShape2D_wih1i")
+[node name="Big Area" type="Area2D" parent="Big Mario" unique_id=600271476]
+collision_mask = 2
 
-[node name="Area2D" type="Area2D" parent="." unique_id=2076627]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Big Mario/Big Area" unique_id=124607235]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_wnnry")
 
-[node name="Collision" type="CollisionShape2D" parent="Area2D" unique_id=768367873]
+[node name="Small Collision" type="CollisionShape2D" parent="." unique_id=1162775279]
 position = Vector2(0, -6)
-shape = SubResource("RectangleShape2D_wih1i")
+shape = SubResource("RectangleShape2D_6je0m")
+
+[node name="Big Collision" type="CollisionShape2D" parent="." unique_id=1750879704]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_s0had")
+
+[connection signal="area_entered" from="Small Mario/Small Area" to="." method="_on_any_area_entered" binds= [0]]
+[connection signal="area_entered" from="Big Mario/Big Area" to="." method="_on_any_area_entered" binds= [1]]

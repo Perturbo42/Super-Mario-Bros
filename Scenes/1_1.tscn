@@ -260,65 +260,65 @@ scale = Vector2(2, 2)
 [node name="Enemies" type="Node2D" parent="." unique_id=380217083]
 
 [node name="Goomba1" parent="Enemies" unique_id=968373170 instance=ExtResource("6_nongs")]
-position = Vector2(720, 400)
+position = Vector2(720, 416)
 scale = Vector2(2, 2)
 
 [node name="Goomba2" parent="Enemies" unique_id=1247889167 instance=ExtResource("6_nongs")]
-position = Vector2(1296, 400)
+position = Vector2(1296, 416)
 scale = Vector2(2, 2)
 
 [node name="Goomba3" parent="Enemies" unique_id=855014314 instance=ExtResource("6_nongs")]
-position = Vector2(1648, 400)
+position = Vector2(1648, 416)
 scale = Vector2(2, 2)
 
 [node name="Goomba4" parent="Enemies" unique_id=1416605261 instance=ExtResource("6_nongs")]
-position = Vector2(1696, 400)
+position = Vector2(1696, 416)
 scale = Vector2(2, 2)
 
 [node name="Goomba5" parent="Enemies" unique_id=1304234648 instance=ExtResource("6_nongs")]
-position = Vector2(2576, 144)
+position = Vector2(2576, 160)
 scale = Vector2(2, 2)
 
 [node name="Goomba6" parent="Enemies" unique_id=2105705761 instance=ExtResource("6_nongs")]
-position = Vector2(2640, 144)
+position = Vector2(2640, 160)
 scale = Vector2(2, 2)
 
 [node name="Goomba7" parent="Enemies" unique_id=1758727500 instance=ExtResource("6_nongs")]
-position = Vector2(3120, 400)
+position = Vector2(3120, 416)
 scale = Vector2(2, 2)
 
 [node name="Goomba8" parent="Enemies" unique_id=606108778 instance=ExtResource("6_nongs")]
-position = Vector2(3168, 400)
+position = Vector2(3168, 416)
 scale = Vector2(2, 2)
 
 [node name="Goomba9" parent="Enemies" unique_id=865730071 instance=ExtResource("6_nongs")]
-position = Vector2(3664, 400)
+position = Vector2(3664, 416)
 scale = Vector2(2, 2)
 
 [node name="Goomba10" parent="Enemies" unique_id=287053919 instance=ExtResource("6_nongs")]
-position = Vector2(3712, 400)
+position = Vector2(3712, 416)
 scale = Vector2(2, 2)
 
 [node name="Goomba11" parent="Enemies" unique_id=750520879 instance=ExtResource("6_nongs")]
-position = Vector2(3984, 400)
+position = Vector2(3984, 416)
 scale = Vector2(2, 2)
 
 [node name="Goomba12" parent="Enemies" unique_id=1269012343 instance=ExtResource("6_nongs")]
-position = Vector2(4032, 400)
+position = Vector2(4032, 416)
 scale = Vector2(2, 2)
 
 [node name="Goomba13" parent="Enemies" unique_id=205813524 instance=ExtResource("6_nongs")]
-position = Vector2(4112, 400)
+position = Vector2(4112, 416)
 scale = Vector2(2, 2)
 
 [node name="Goomba14" parent="Enemies" unique_id=147423281 instance=ExtResource("6_nongs")]
-position = Vector2(4160, 400)
+position = Vector2(4160, 416)
 scale = Vector2(2, 2)
 
 [node name="Goomba15" parent="Enemies" unique_id=1625490787 instance=ExtResource("6_nongs")]
-position = Vector2(5584, 400)
+position = Vector2(5584, 416)
 scale = Vector2(2, 2)
 
 [node name="Goomba16" parent="Enemies" unique_id=2027051538 instance=ExtResource("6_nongs")]
-position = Vector2(5632, 400)
+position = Vector2(5632, 416)
 scale = Vector2(2, 2)
