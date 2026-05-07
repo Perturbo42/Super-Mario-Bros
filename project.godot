@@ -71,7 +71,6 @@ up={
 2d_physics/layer_3="Blocks"
 2d_physics/layer_4="Camera-Left"
 2d_physics/layer_5="Camera-Right"
-2d_physics/layer_6="Dead"
 
 [physics]
 

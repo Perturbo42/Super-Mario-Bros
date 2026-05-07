@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://bj34eveq6uy0w"]
+
+[ext_resource type="Script" uid="uid://bcrrx3iw2drmc" path="res://Scripts/brick.gd" id="1_hqb1c"]
+[ext_resource type="Texture2D" uid="uid://c545uyfyywsvs" path="res://Assets/Item and Brick Blocks.png" id="1_lvh1d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqb1c"]
+atlas = ExtResource("1_lvh1d")
+region = Rect2(272, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8nvr"]
+atlas = ExtResource("1_lvh1d")
+region = Rect2(128, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k76ut"]
+atlas = ExtResource("1_lvh1d")
+region = Rect2(80, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8te7s"]
+atlas = ExtResource("1_lvh1d")
+region = Rect2(96, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehphr"]
+atlas = ExtResource("1_lvh1d")
+region = Rect2(112, 112, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e0prt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqb1c")
+}],
+"loop": true,
+"name": &"BrickBlock",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f8nvr")
+}],
+"loop": true,
+"name": &"HitBlock",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k76ut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8te7s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehphr")
+}],
+"loop": true,
+"name": &"QuestionBlock",
+"speed": 2.5
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lvh1d"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqb1c"]
+size = Vector2(16, 16)
+
+[node name="Brick" type="StaticBody2D" unique_id=270925358]
+scale = Vector2(2, 2)
+collision_layer = 6
+script = ExtResource("1_hqb1c")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=194541739]
+texture_filter = 1
+texture_repeat = 1
+sprite_frames = SubResource("SpriteFrames_e0prt")
+animation = &"HitBlock"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1112176612]
+shape = SubResource("RectangleShape2D_lvh1d")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=368268404]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1593781748]
+shape = SubResource("RectangleShape2D_hqb1c")
+
+[node name="Bounce" type="Timer" parent="." unique_id=917253666]
+wait_time = 0.133
+one_shot = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Bounce" to="." method="_on_bounce_timeout"]

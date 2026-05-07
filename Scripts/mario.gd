@@ -32,6 +32,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed('jump') and is_on_floor():
 		velocity.y = -JUMP_FORCE
 	
+	
 	#Handle Crouch
 	if Input.is_action_just_pressed("crouch") and is_on_floor():
 		small_coll.set_deferred("disabled", false)
@@ -53,6 +54,7 @@ func _physics_process(delta: float) -> void:
 		set_big()
 	if Input.is_key_pressed(KEY_E):
 		set_small()
+	
 
 	move_and_slide()
 
@@ -87,13 +89,15 @@ func die():
 func _on_any_area_entered(area: Area2D, hit: int) -> void:
 	if hit != active_area:
 		return
-	print(area.name)
 	if area.get_parent() is Enemy:
 		var enemy = area.get_parent()
 		if enemy.is_alive:
 			if velocity.y > 0:
 				enemy.die()
-				velocity.y = -JUMP_FORCE/2
+				if Input.is_action_pressed("jump"):
+					velocity.y = -JUMP_FORCE
+				else:
+					velocity.y = -JUMP_FORCE/2
 			else:
 				take_damage()
 	pass # Replace with function body.
