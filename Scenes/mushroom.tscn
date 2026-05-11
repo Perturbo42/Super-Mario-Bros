@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://m81vp8g8sk0d" path="res://Assets/Items/Mushroom.png" id="2_e0au5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8wxru"]
-size = Vector2(16, 16)
+size = Vector2(12, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c6w58"]
-size = Vector2(14, 15)
+size = Vector2(16, 16)
 
 [node name="Mushroom" type="CharacterBody2D" unique_id=817504389]
 scale = Vector2(2, 2)
@@ -16,6 +16,7 @@ collision_mask = 4
 script = ExtResource("1_0q7t7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1932771788]
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_8wxru")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=255405994]
@@ -28,7 +29,6 @@ vframes = 2
 collision_layer = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=775954307]
-position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_c6w58")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

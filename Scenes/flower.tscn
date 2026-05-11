@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://bcrrp5yoldf8d"]
+
+[ext_resource type="Script" uid="uid://d2acwe3gx01n5" path="res://Scripts/flower.gd" id="1_4r3j5"]
+[ext_resource type="Texture2D" uid="uid://bkwxgfuutmq78" path="res://Assets/Items/Flower.png" id="1_s3cv5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4r3j5"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbmji"]
+atlas = ExtResource("1_s3cv5")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88g82"]
+atlas = ExtResource("1_s3cv5")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ei51o"]
+atlas = ExtResource("1_s3cv5")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gd0df"]
+atlas = ExtResource("1_s3cv5")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d2yni"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbmji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88g82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ei51o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gd0df")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d1m62"]
+size = Vector2(16, 16)
+
+[node name="Flower" type="CharacterBody2D" unique_id=1781344371]
+scale = Vector2(2, 2)
+collision_layer = 32
+collision_mask = 4
+script = ExtResource("1_4r3j5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=805843208]
+shape = SubResource("RectangleShape2D_4r3j5")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=701065775]
+texture_filter = 1
+texture_repeat = 1
+sprite_frames = SubResource("SpriteFrames_d2yni")
+frame_progress = 0.54306525
+
+[node name="Area2D" type="Area2D" parent="." unique_id=216076776]
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1833159138]
+shape = SubResource("RectangleShape2D_d1m62")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

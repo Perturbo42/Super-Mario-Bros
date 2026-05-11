@@ -57,6 +57,11 @@ func bounce():
 			mushroom.position = self.position
 			mushroom.spawned_from_brick()
 			get_tree().current_scene.call_deferred("add_child", mushroom)
+		elif Global.mario.curr_state == 1:
+			var flower = preload("res://Scenes/flower.tscn").instantiate()
+			flower.position = self.position
+			flower.spawned_from_brick()
+			get_tree().current_scene.call_deferred("add_child", flower)
 	y_speed = -240.0
 	bounce_timer.start()
 

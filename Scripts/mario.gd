@@ -8,6 +8,8 @@ signal dead
 @onready var big_head: Area2D = $"Big Mario/Big Head"
 @onready var small_mario: Node2D = $"Small Mario"
 @onready var big_mario: Node2D = $"Big Mario"
+@onready var anim_fire_mario: AnimatedSprite2D = $"Big Mario/Anim(Fire Mario)"
+
 const ACCEL = 1200
 const MAX_SPEED = 250
 const JUMP_FORCE: float = 500
@@ -18,6 +20,7 @@ var state_list : Array[int] = [0, 1, 2]
 var curr_state: int = 0 
 var jump_time: float = 0.0 
 var dir: float = 0.0
+var invincible: bool = false
 
 func _ready() -> void: 
 	Global.mario = self
@@ -85,11 +88,23 @@ func set_big():
 	small_mario.visible = false
 	big_mario.visible = true
 
+func fire_flower():
+	curr_state = 2
+	anim_fire_mario.visible = true
+
+
 func take_damage():
-	if curr_state == 0:
-		die()
-	elif curr_state == 1 or curr_state == 2:
-		set_small()
+	if invincible:
+		return
+	else:
+		if curr_state == 0:
+			die()
+		elif curr_state == 1 or curr_state == 2:
+			invincible = true
+			set_small()
+			anim_fire_mario.visible = false
+			await get_tree().create_timer(1.0).timeout
+			invincible = false
 
 func die():
 	curr_state = -1
