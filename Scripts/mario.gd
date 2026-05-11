@@ -4,6 +4,8 @@ signal dead
 @onready var big_coll: CollisionShape2D = $"Big Collision"
 @onready var small_area: Area2D = $"Small Mario/Small Area"
 @onready var big_area: Area2D = $"Big Mario/Big Area"
+@onready var small_head: Area2D = $"Small Mario/Small Head"
+@onready var big_head: Area2D = $"Big Mario/Big Head"
 @onready var small_mario: Node2D = $"Small Mario"
 @onready var big_mario: Node2D = $"Big Mario"
 const ACCEL = 1200
@@ -35,11 +37,15 @@ func _physics_process(delta: float) -> void:
 	
 	#Handle Crouch
 	if Input.is_action_just_pressed("crouch") and is_on_floor():
+		small_head.monitorable = true
+		big_head.monitorable = false
 		small_coll.set_deferred("disabled", false)
 		big_coll.set_deferred("disabled", true)
 		active_area = 0
 	elif Input.is_action_just_released("crouch") and is_on_floor():
 		if curr_state != 0:
+			small_head.monitorable = false
+			big_head.monitorable = true
 			small_coll.set_deferred("disabled", true)
 			big_coll.set_deferred("disabled", false)
 			active_area = 1
@@ -61,6 +67,8 @@ func _physics_process(delta: float) -> void:
 func set_small():
 	curr_state = 0
 	active_area = 0
+	small_head.monitorable = true
+	big_head.monitorable = false
 	small_coll.set_deferred("disabled", false)
 	big_coll.set_deferred("disabled", true)
 	small_mario.visible = true
@@ -69,6 +77,8 @@ func set_small():
 func set_big():
 	curr_state = 1
 	active_area = 1
+	small_head.monitorable = false
+	big_head.monitorable = true
 	small_coll.set_deferred("disabled", true)
 	big_coll.set_deferred("disabled", false)
 	small_mario.visible = false

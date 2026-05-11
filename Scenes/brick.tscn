@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bcrrx3iw2drmc" path="res://Scripts/brick.gd" id="1_hqb1c"]
 [ext_resource type="Texture2D" uid="uid://c545uyfyywsvs" path="res://Assets/Item and Brick Blocks.png" id="1_lvh1d"]
+[ext_resource type="Texture2D" uid="uid://c8wjwvb7q46xi" path="res://Assets/Items/Coin.png" id="3_f8nvr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hqb1c"]
 atlas = ExtResource("1_lvh1d")
@@ -56,15 +57,53 @@ animations = [{
 "speed": 2.5
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f8nvr"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lvh1d"]
 size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hqb1c"]
 size = Vector2(16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0prt"]
+atlas = ExtResource("3_f8nvr")
+region = Rect2(0, 0, 8, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_auo07"]
+atlas = ExtResource("3_f8nvr")
+region = Rect2(8, 0, 8, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0d1f7"]
+atlas = ExtResource("3_f8nvr")
+region = Rect2(16, 0, 8, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hd0l3"]
+atlas = ExtResource("3_f8nvr")
+region = Rect2(24, 0, 8, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uo4xt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e0prt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_auo07")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0d1f7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hd0l3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
 [node name="Brick" type="StaticBody2D" unique_id=270925358]
 scale = Vector2(2, 2)
-collision_layer = 6
+collision_layer = 4
 script = ExtResource("1_hqb1c")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=194541739]
@@ -73,11 +112,20 @@ texture_repeat = 1
 sprite_frames = SubResource("SpriteFrames_e0prt")
 animation = &"HitBlock"
 
+[node name="Enemy Kill Box" type="Area2D" parent="AnimatedSprite2D" unique_id=427781814]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Enemy Kill Box" unique_id=1481261106]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_f8nvr")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1112176612]
 shape = SubResource("RectangleShape2D_lvh1d")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=368268404]
 collision_layer = 4
+collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1593781748]
 shape = SubResource("RectangleShape2D_hqb1c")
@@ -86,5 +134,14 @@ shape = SubResource("RectangleShape2D_hqb1c")
 wait_time = 0.133
 one_shot = true
 
+[node name="Coin" type="AnimatedSprite2D" parent="." unique_id=1882935947]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_uo4xt")
+frame = 1
+frame_progress = 0.27920774
+
+[connection signal="area_entered" from="AnimatedSprite2D/Enemy Kill Box" to="." method="_on_enemy_kill_box_area_entered"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="Bounce" to="." method="_on_bounce_timeout"]

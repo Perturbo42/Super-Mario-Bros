@@ -17,3 +17,6 @@ func _physics_process(delta: float) -> void:
 
 func die():
 	pass
+
+func flip():
+	pass

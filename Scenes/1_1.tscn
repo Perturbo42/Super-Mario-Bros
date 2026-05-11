@@ -229,6 +229,7 @@ sources/5 = SubResource("TileSetAtlasSource_jwmpy")
 sources/6 = SubResource("TileSetAtlasSource_smmqd")
 
 [node name="1-1" type="Node2D" unique_id=1621613002]
+scale = Vector2(0.99885094, 1.00183)
 
 [node name="Camera" parent="." unique_id=1800756633 instance=ExtResource("1_xo1cu")]
 position = Vector2(257, 240)
@@ -248,67 +249,51 @@ scale = Vector2(2, 2)
 
 [node name="Goomba1" parent="Enemies" unique_id=968373170 instance=ExtResource("6_nongs")]
 position = Vector2(720, 416)
-scale = Vector2(2, 2)
 
 [node name="Goomba2" parent="Enemies" unique_id=1247889167 instance=ExtResource("6_nongs")]
 position = Vector2(1296, 416)
-scale = Vector2(2, 2)
 
 [node name="Goomba3" parent="Enemies" unique_id=855014314 instance=ExtResource("6_nongs")]
 position = Vector2(1648, 416)
-scale = Vector2(2, 2)
 
 [node name="Goomba4" parent="Enemies" unique_id=1416605261 instance=ExtResource("6_nongs")]
 position = Vector2(1696, 416)
-scale = Vector2(2, 2)
 
 [node name="Goomba5" parent="Enemies" unique_id=1304234648 instance=ExtResource("6_nongs")]
 position = Vector2(2576, 160)
-scale = Vector2(2, 2)
 
 [node name="Goomba6" parent="Enemies" unique_id=2105705761 instance=ExtResource("6_nongs")]
 position = Vector2(2640, 160)
-scale = Vector2(2, 2)
 
 [node name="Goomba7" parent="Enemies" unique_id=1758727500 instance=ExtResource("6_nongs")]
 position = Vector2(3120, 416)
-scale = Vector2(2, 2)
 
 [node name="Goomba8" parent="Enemies" unique_id=606108778 instance=ExtResource("6_nongs")]
 position = Vector2(3168, 416)
-scale = Vector2(2, 2)
 
 [node name="Goomba9" parent="Enemies" unique_id=865730071 instance=ExtResource("6_nongs")]
 position = Vector2(3664, 416)
-scale = Vector2(2, 2)
 
 [node name="Goomba10" parent="Enemies" unique_id=287053919 instance=ExtResource("6_nongs")]
 position = Vector2(3712, 416)
-scale = Vector2(2, 2)
 
 [node name="Goomba11" parent="Enemies" unique_id=750520879 instance=ExtResource("6_nongs")]
 position = Vector2(3984, 416)
-scale = Vector2(2, 2)
 
 [node name="Goomba12" parent="Enemies" unique_id=1269012343 instance=ExtResource("6_nongs")]
 position = Vector2(4032, 416)
-scale = Vector2(2, 2)
 
 [node name="Goomba13" parent="Enemies" unique_id=205813524 instance=ExtResource("6_nongs")]
 position = Vector2(4112, 416)
-scale = Vector2(2, 2)
 
 [node name="Goomba14" parent="Enemies" unique_id=147423281 instance=ExtResource("6_nongs")]
 position = Vector2(4160, 416)
-scale = Vector2(2, 2)
 
 [node name="Goomba15" parent="Enemies" unique_id=1625490787 instance=ExtResource("6_nongs")]
 position = Vector2(5584, 416)
-scale = Vector2(2, 2)
 
 [node name="Goomba16" parent="Enemies" unique_id=2027051538 instance=ExtResource("6_nongs")]
 position = Vector2(5632, 416)
-scale = Vector2(2, 2)
 
 [node name="Bricks" type="Node2D" parent="." unique_id=239457677]
 
@@ -498,3 +483,18 @@ contains = 1
 [node name="Brick43" parent="Bricks" unique_id=98943762 instance=ExtResource("7_j0i4v")]
 position = Vector2(5488, 304)
 brick_state = 1
+
+[node name="Test" type="Node2D" parent="." unique_id=1527193463]
+
+[node name="Brick" parent="Test" unique_id=919194710 instance=ExtResource("7_j0i4v")]
+position = Vector2(190.2186, 295.45932)
+brick_state = 1
+
+[node name="Brick2" parent="Test" unique_id=1353312768 instance=ExtResource("7_j0i4v")]
+position = Vector2(158.18176, 263.51776)
+
+[node name="Brick3" parent="Test" unique_id=1300585814 instance=ExtResource("7_j0i4v")]
+position = Vector2(222.25539, 263.51776)
+
+[node name="Goomba" parent="Test" unique_id=1618545320 instance=ExtResource("6_nongs")]
+position = Vector2(190.21857, 279.48853)
