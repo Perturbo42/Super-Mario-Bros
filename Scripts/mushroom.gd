@@ -1,10 +1,12 @@
 class_name Mushroom extends Item
+@onready var area: Area2D = $Area2D
 @export var state: int = 0
 #state: mushroom = 0, life = 1
 var dir: Vector2
 var speed: float
 
 func _ready() -> void:
+	area.monitoring = false
 	$Sprite2D.frame = state
 	dir = Vector2.RIGHT
 	speed = 80
@@ -29,3 +31,10 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			Global.lives += 1
 		queue_free()
 	pass # Replace with function body.
+
+func spawned_from_brick():
+	#tween up 32 spaces 
+	var tween = create_tween()
+	tween.tween_property(self, "position", self.global_position + Vector2.UP * 32, 0.5)
+	await tween.finished
+	area.monitoring = true

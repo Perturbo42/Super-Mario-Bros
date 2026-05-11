@@ -22,6 +22,8 @@ func _physics_process(delta: float) -> void:
 	if !is_alive:
 		if sprite.flip_v == true:
 			velocity.y += 980 * delta
+		else:
+			velocity.x = 0
 		move_and_slide()
 		return
 	

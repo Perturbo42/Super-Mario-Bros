@@ -51,6 +51,12 @@ func bounce():
 		coin.visible = true
 		coin.play("default")
 		coin_speed = -360.00
+	elif contains == 2:
+		if Global.mario.curr_state == 0:
+			var mushroom = preload("res://Scenes/mushroom.tscn").instantiate()
+			mushroom.position = self.position
+			mushroom.spawned_from_brick()
+			get_tree().current_scene.call_deferred("add_child", mushroom)
 	y_speed = -240.0
 	bounce_timer.start()
 

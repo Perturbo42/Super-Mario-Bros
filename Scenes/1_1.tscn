@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://cxebex4txl4by" path="res://Assets/Tileset.png" id="4_xo1cu"]
 [ext_resource type="PackedScene" uid="uid://cvt1mi8ramvdf" path="res://Scenes/goomba.tscn" id="6_nongs"]
 [ext_resource type="PackedScene" uid="uid://bj34eveq6uy0w" path="res://Scenes/brick.tscn" id="7_j0i4v"]
-[ext_resource type="PackedScene" uid="uid://fycerovk6uv4" path="res://Scenes/mushroom.tscn" id="8_jb7fx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nongs"]
 texture = ExtResource("3_jy7wi")
@@ -486,6 +485,3 @@ position = Vector2(5488, 304)
 brick_state = 1
 
 [node name="Test" type="Node2D" parent="." unique_id=1527193463]
-
-[node name="Mushroom" parent="Test" unique_id=817504389 instance=ExtResource("8_jb7fx")]
-position = Vector2(222.25539, 369.32413)

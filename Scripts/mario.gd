@@ -14,6 +14,7 @@ const JUMP_FORCE: float = 500
 
 var active_area: int
 var state_list : Array[int] = [0, 1, 2] 
+#0 = small, 1 = big, 2 = fire
 var curr_state: int = 0 
 var jump_time: float = 0.0 
 var dir: float = 0.0
@@ -67,8 +68,8 @@ func _physics_process(delta: float) -> void:
 func set_small():
 	curr_state = 0
 	active_area = 0
-	small_head.monitorable = true
-	big_head.monitorable = false
+	small_head.set_deferred("monitorable", true)
+	big_head.set_deferred("monitorable", false)
 	small_coll.set_deferred("disabled", false)
 	big_coll.set_deferred("disabled", true)
 	small_mario.visible = true
@@ -77,8 +78,8 @@ func set_small():
 func set_big():
 	curr_state = 1
 	active_area = 1
-	small_head.monitorable = false
-	big_head.monitorable = true
+	small_head.set_deferred("monitorable", false)
+	big_head.set_deferred("monitorable", true)
 	small_coll.set_deferred("disabled", true)
 	big_coll.set_deferred("disabled", false)
 	small_mario.visible = false
