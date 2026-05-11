@@ -99,8 +99,8 @@ func die():
 func _on_any_area_entered(area: Area2D, hit: int) -> void:
 	if hit != active_area:
 		return
-	if area.get_parent() is Enemy:
-		var enemy = area.get_parent()
+	if area.owner is Enemy:
+		var enemy = area.owner
 		if enemy.is_alive:
 			if velocity.y > 0:
 				enemy.die()

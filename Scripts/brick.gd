@@ -71,7 +71,7 @@ func _on_bounce_timeout() -> void:
 
 
 func _on_enemy_kill_box_area_entered(area: Area2D) -> void:
-	if area.get_parent() is Enemy:
-		var enemy = area.get_parent()
+	if area.owner is Enemy:
+		var enemy = area.owner
 		enemy.flip()
 	pass # Replace with function body.

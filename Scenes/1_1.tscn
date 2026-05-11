@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cxebex4txl4by" path="res://Assets/Tileset.png" id="4_xo1cu"]
 [ext_resource type="PackedScene" uid="uid://cvt1mi8ramvdf" path="res://Scenes/goomba.tscn" id="6_nongs"]
 [ext_resource type="PackedScene" uid="uid://bj34eveq6uy0w" path="res://Scenes/brick.tscn" id="7_j0i4v"]
+[ext_resource type="PackedScene" uid="uid://fycerovk6uv4" path="res://Scenes/mushroom.tscn" id="8_jb7fx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nongs"]
 texture = ExtResource("3_jy7wi")
@@ -486,15 +487,5 @@ brick_state = 1
 
 [node name="Test" type="Node2D" parent="." unique_id=1527193463]
 
-[node name="Brick" parent="Test" unique_id=919194710 instance=ExtResource("7_j0i4v")]
-position = Vector2(190.2186, 295.45932)
-brick_state = 1
-
-[node name="Brick2" parent="Test" unique_id=1353312768 instance=ExtResource("7_j0i4v")]
-position = Vector2(158.18176, 263.51776)
-
-[node name="Brick3" parent="Test" unique_id=1300585814 instance=ExtResource("7_j0i4v")]
-position = Vector2(222.25539, 263.51776)
-
-[node name="Goomba" parent="Test" unique_id=1618545320 instance=ExtResource("6_nongs")]
-position = Vector2(190.21857, 279.48853)
+[node name="Mushroom" parent="Test" unique_id=817504389 instance=ExtResource("8_jb7fx")]
+position = Vector2(222.25539, 369.32413)
