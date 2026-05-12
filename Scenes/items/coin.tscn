@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://cir5tdom6xnfj"]
+
+[ext_resource type="Script" uid="uid://ddamw6rjv5ict" path="res://Scripts/items/coin.gd" id="1_y3nld"]
+[ext_resource type="Texture2D" uid="uid://cxebex4txl4by" path="res://Assets/Tileset.png" id="2_y3nld"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvf8c"]
+atlas = ExtResource("2_y3nld")
+region = Rect2(298, 95, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3sdk7"]
+atlas = ExtResource("2_y3nld")
+region = Rect2(315, 95, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xa7yf"]
+atlas = ExtResource("2_y3nld")
+region = Rect2(332, 95, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u7afm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wvf8c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3sdk7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xa7yf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jgi06"]
+size = Vector2(10, 14)
+
+[node name="Coin" type="Area2D" unique_id=1333007651]
+scale = Vector2(2, 2)
+collision_layer = 32
+script = ExtResource("1_y3nld")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1999767693]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_u7afm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1297927845]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_jgi06")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

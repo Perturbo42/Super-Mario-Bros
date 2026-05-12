@@ -73,6 +73,7 @@ up={
 2d_physics/layer_5="Camera-Right"
 2d_physics/layer_6="Items"
 2d_physics/layer_7="Mario_Head"
+2d_physics/layer_8="Pipe"
 
 [physics]
 

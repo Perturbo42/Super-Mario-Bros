@@ -1,25 +1,25 @@
 [gd_scene format=3 uid="uid://bcrrp5yoldf8d"]
 
-[ext_resource type="Script" uid="uid://d2acwe3gx01n5" path="res://Scripts/flower.gd" id="1_4r3j5"]
-[ext_resource type="Texture2D" uid="uid://bkwxgfuutmq78" path="res://Assets/Items/Flower.png" id="1_s3cv5"]
+[ext_resource type="Script" uid="uid://d2acwe3gx01n5" path="res://Scripts/items/flower.gd" id="1_07rfe"]
+[ext_resource type="Texture2D" uid="uid://bkwxgfuutmq78" path="res://Assets/Items/Flower.png" id="2_x2ba2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4r3j5"]
 size = Vector2(16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hbmji"]
-atlas = ExtResource("1_s3cv5")
+atlas = ExtResource("2_x2ba2")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_88g82"]
-atlas = ExtResource("1_s3cv5")
+atlas = ExtResource("2_x2ba2")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ei51o"]
-atlas = ExtResource("1_s3cv5")
+atlas = ExtResource("2_x2ba2")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gd0df"]
-atlas = ExtResource("1_s3cv5")
+atlas = ExtResource("2_x2ba2")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_d2yni"]
@@ -49,7 +49,7 @@ size = Vector2(16, 16)
 scale = Vector2(2, 2)
 collision_layer = 32
 collision_mask = 4
-script = ExtResource("1_4r3j5")
+script = ExtResource("1_07rfe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=805843208]
 shape = SubResource("RectangleShape2D_4r3j5")

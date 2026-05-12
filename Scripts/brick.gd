@@ -53,12 +53,12 @@ func bounce():
 		coin_speed = -360.00
 	elif contains == 2:
 		if Global.mario.curr_state == 0:
-			var mushroom = preload("res://Scenes/mushroom.tscn").instantiate()
+			var mushroom = preload("res://Scenes/items/mushroom.tscn").instantiate()
 			mushroom.position = self.position
 			mushroom.spawned_from_brick()
 			get_tree().current_scene.call_deferred("add_child", mushroom)
 		elif Global.mario.curr_state == 1:
-			var flower = preload("res://Scenes/flower.tscn").instantiate()
+			var flower = preload("res://Scenes/items/flower.tscn").instantiate()
 			flower.position = self.position
 			flower.spawned_from_brick()
 			get_tree().current_scene.call_deferred("add_child", flower)

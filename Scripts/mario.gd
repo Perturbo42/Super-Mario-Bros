@@ -24,8 +24,10 @@ var invincible: bool = false
 
 func _ready() -> void: 
 	Global.mario = self
-	curr_state = 0
-	set_small()
+	curr_state = Global.mario_state
+	change_state()
+	var marker = get_tree().current_scene.find_child(Global.target_marker_name, true, false)
+	global_position = marker.global_position
 
 func _physics_process(delta: float) -> void:
 	if curr_state == -1:
@@ -127,3 +129,12 @@ func _on_any_area_entered(area: Area2D, hit: int) -> void:
 			else:
 				take_damage()
 	pass # Replace with function body.
+
+func change_state():
+	if curr_state == 0:
+		set_small()
+	elif curr_state == 1:
+		set_big()
+	elif curr_state == 2:
+		set_big()
+		fire_flower()

@@ -1,0 +1,123 @@
+[gd_scene format=3 uid="uid://b7c7gwoy73hbe"]
+
+[ext_resource type="Texture2D" uid="uid://c40gaxgbab46a" path="res://Assets/Enemies/Koopa.png" id="1_l6r1p"]
+[ext_resource type="Script" uid="uid://dmj32jx3jjdva" path="res://Scripts/koopa.gd" id="1_n0nud"]
+
+[sub_resource type="Animation" id="Animation_n0nud"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_v")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_qjbdu"]
+resource_name = "flipped"
+length = 0.5166684
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:flip_v")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_0k7od"]
+resource_name = "hiding"
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_xjn5f"]
+resource_name = "walk"
+length = 0.26666835
+loop_mode = 1
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0k7od"]
+_data = {
+&"RESET": SubResource("Animation_n0nud"),
+&"flipped": SubResource("Animation_qjbdu"),
+&"hiding": SubResource("Animation_0k7od"),
+&"walk": SubResource("Animation_xjn5f")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l6r1p"]
+size = Vector2(12, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n0nud"]
+size = Vector2(15, 14)
+
+[node name="Koopa" type="CharacterBody2D" unique_id=2130434712]
+scale = Vector2(2, 2)
+collision_layer = 2
+collision_mask = 22
+script = ExtResource("1_n0nud")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=37980392]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(0, -11.5)
+texture = ExtResource("1_l6r1p")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=897256842]
+libraries/ = SubResource("AnimationLibrary_0k7od")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=426686566]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1770896053]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_l6r1p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1346043626]
+position = Vector2(0.5, -7)
+shape = SubResource("RectangleShape2D_n0nud")
