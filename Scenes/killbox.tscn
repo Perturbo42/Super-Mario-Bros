@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://5phf0oxgio4p"]
+
+[ext_resource type="Script" uid="uid://cj7cb2pkp8akk" path="res://Scripts/world/killbox.gd" id="1_l0vr1"]
+
+[node name="Killbox" type="Area2D" unique_id=1585941622]
+collision_layer = 256
+script = ExtResource("1_l0vr1")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

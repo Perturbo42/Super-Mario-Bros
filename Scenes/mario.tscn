@@ -84,7 +84,7 @@ animations = [{
 size = Vector2(10, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mmods"]
-size = Vector2(6, 1)
+size = Vector2(9, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_glbki"]
 atlas = ExtResource("1_pmqej")
@@ -256,7 +256,7 @@ animations = [{
 size = Vector2(12, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ic7m"]
-size = Vector2(6, 1)
+size = Vector2(11, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6je0m"]
 size = Vector2(10, 12)
@@ -278,10 +278,11 @@ texture_filter = 1
 texture_repeat = 1
 position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_0ic7m")
+frame_progress = 0.057143774
 
 [node name="Small Area" type="Area2D" parent="Small Mario" unique_id=1759140544]
 position = Vector2(0, 7)
-collision_mask = 162
+collision_mask = 418
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Small Mario/Small Area" unique_id=225439243]
 position = Vector2(0, -6)
@@ -296,6 +297,7 @@ position = Vector2(0, -5)
 shape = SubResource("RectangleShape2D_mmods")
 
 [node name="Big Mario" type="Node2D" parent="." unique_id=2120501886]
+visible = false
 position = Vector2(0, -16)
 
 [node name="Anim (Big Mario)" type="AnimatedSprite2D" parent="Big Mario" unique_id=835469358]
@@ -312,7 +314,7 @@ sprite_frames = SubResource("SpriteFrames_5ue2y")
 animation = &"crouch"
 
 [node name="Big Area" type="Area2D" parent="Big Mario" unique_id=600271476]
-collision_mask = 162
+collision_mask = 418
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Big Mario/Big Area" unique_id=124607235]
 position = Vector2(0, 4)

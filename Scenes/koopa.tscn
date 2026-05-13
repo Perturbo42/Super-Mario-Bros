@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b7c7gwoy73hbe"]
 
 [ext_resource type="Texture2D" uid="uid://c40gaxgbab46a" path="res://Assets/Enemies/Koopa.png" id="1_l6r1p"]
-[ext_resource type="Script" uid="uid://dmj32jx3jjdva" path="res://Scripts/koopa.gd" id="1_n0nud"]
+[ext_resource type="Script" uid="uid://dmj32jx3jjdva" path="res://Scripts/enemies/koopa.gd" id="1_n0nud"]
 
 [sub_resource type="Animation" id="Animation_n0nud"]
 length = 0.001

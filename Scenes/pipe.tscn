@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b1nhfng7odlkv"]
 
-[ext_resource type="Script" uid="uid://bsipfuvt7m2vu" path="res://pipe.gd" id="1_n21g0"]
+[ext_resource type="Script" uid="uid://bsipfuvt7m2vu" path="res://Scripts/world/pipe.gd" id="1_n21g0"]
 
 [node name="Pipe" type="Area2D" unique_id=2042649393]
 collision_layer = 128

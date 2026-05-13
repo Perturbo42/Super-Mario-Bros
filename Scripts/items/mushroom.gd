@@ -19,10 +19,9 @@ func _physics_process(delta: float) -> void:
 		print("hitwall")
 		dir.x *= -1
 	
-	velocity = dir * speed 
+	velocity.x = dir.x * speed 
 	if not is_on_floor():
-		velocity.x = 0
-		velocity.y += 490
+		velocity.y += 980 * delta * 2
 	move_and_slide()
 
 

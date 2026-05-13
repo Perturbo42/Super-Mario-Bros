@@ -40,6 +40,8 @@ func _physics_process(delta: float) -> void:
 		anim_small_mario.play("dead")
 		velocity.x = 0
 		velocity.y += 980 * delta
+		if position.y >= 550:
+			dead.emit()
 		return
 	
 	#moving left and right
@@ -85,6 +87,8 @@ func _physics_process(delta: float) -> void:
 			small_coll.set_deferred("disabled", true)
 			big_coll.set_deferred("disabled", false)
 			active_area = 1
+	if Input.is_action_pressed("crouch") and is_on_floor():
+		curr_anim().play("crouch")
 	
 	if Input.is_key_pressed(KEY_Q):
 		set_big()
@@ -94,6 +98,7 @@ func _physics_process(delta: float) -> void:
 	
 
 func set_small():
+	var anim = curr_anim().animation
 	curr_state = 0
 	active_area = 0
 	small_head.set_deferred("monitorable", true)
@@ -102,8 +107,11 @@ func set_small():
 	big_coll.set_deferred("disabled", true)
 	small_mario.visible = true
 	big_mario.visible = false
+	curr_anim().play(anim)
+	
 
 func set_big():
+	var anim = curr_anim().animation
 	curr_state = 1
 	active_area = 1
 	small_head.set_deferred("monitorable", false)
@@ -112,11 +120,14 @@ func set_big():
 	big_coll.set_deferred("disabled", false)
 	small_mario.visible = false
 	big_mario.visible = true
+	curr_anim().play(anim)
 
 func fire_flower():
+	var anim = curr_anim().animation
 	curr_state = 2
 	anim_big_mario.visible = false
 	anim_fire_mario.visible = true
+	curr_anim().play(anim)
 
 
 func take_damage():
@@ -134,16 +145,18 @@ func take_damage():
 			invincible = false
 
 func die():
+	if curr_state == -1:
+		return
+	set_small()
 	curr_state = -1
 	small_coll.set_deferred("disabled", true)
 	big_coll.set_deferred("disabled", true)
+	small_head.set_deferred("monitorable", false)
 	velocity.y = -360
-	dead.emit()
-	
 	pass
 
 func _on_any_area_entered(area: Area2D, hit: int) -> void:
-	if hit != active_area:
+	if hit != active_area or curr_state == -1:
 		return
 	if area.owner is Enemy:
 		var enemy = area.owner

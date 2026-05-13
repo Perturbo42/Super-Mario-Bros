@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cvt1mi8ramvdf"]
 
 [ext_resource type="Texture2D" uid="uid://dr6aa8ijq3g5a" path="res://Assets/Enemies/Goomba.png" id="1_ugtcb"]
-[ext_resource type="Script" uid="uid://cp1jywltr7yli" path="res://Scripts/goomba.gd" id="1_wqi4q"]
+[ext_resource type="Script" uid="uid://cp1jywltr7yli" path="res://Scripts/enemies/goomba.gd" id="1_wqi4q"]
 
 [sub_resource type="Animation" id="Animation_jf5fk"]
 length = 0.001
@@ -98,7 +98,7 @@ size = Vector2(16, 16)
 [node name="Goomba" type="CharacterBody2D" unique_id=968373170]
 scale = Vector2(2, 2)
 collision_layer = 2
-collision_mask = 22
+collision_mask = 20
 script = ExtResource("1_wqi4q")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1916398956]

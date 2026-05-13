@@ -1,8 +1,11 @@
 class_name Flower extends Item
 @onready var area2D: Area2D = $Area2D
+@onready var sprite_2d: AnimatedSprite2D = $Sprite2D
+
 
 func _ready() -> void:
 	area2D.monitoring = false
+	sprite_2d.play("default")
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
