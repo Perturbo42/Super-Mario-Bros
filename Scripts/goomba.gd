@@ -17,6 +17,7 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
+	move_and_slide()
 	if !loaded:
 		return
 	if !is_alive:
@@ -24,7 +25,6 @@ func _physics_process(delta: float) -> void:
 			velocity.y += 980 * delta
 		else:
 			velocity.x = 0
-		move_and_slide()
 		return
 	
 	if is_on_wall():
@@ -33,7 +33,7 @@ func _physics_process(delta: float) -> void:
 	velocity.x = dir.x * speed 
 	if not is_on_floor():
 		velocity.y += 980 * delta
-	move_and_slide()
+	
 
 func die():
 	super.die()

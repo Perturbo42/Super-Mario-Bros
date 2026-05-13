@@ -3,9 +3,21 @@
 [ext_resource type="Script" uid="uid://dqtuva674ssoe" path="res://Scripts/mario.gd" id="1_5ue2y"]
 [ext_resource type="Texture2D" uid="uid://ba7ttbob2ygco" path="res://Assets/Mario.png" id="1_pmqej"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ue2y"]
+atlas = ExtResource("1_pmqej")
+region = Rect2(116, 8, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_wnnry"]
 atlas = ExtResource("1_pmqej")
 region = Rect2(0, 8, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ic7m"]
+atlas = ExtResource("1_pmqej")
+region = Rect2(96, 8, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wih1i"]
+atlas = ExtResource("1_pmqej")
+region = Rect2(154, 8, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6je0m"]
 atlas = ExtResource("1_pmqej")
@@ -23,10 +35,34 @@ region = Rect2(56, 8, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_5ue2y")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_wnnry")
 }],
 "loop": true,
-"name": &"idle",
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ic7m")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wih1i")
+}],
+"loop": true,
+"name": &"poll_grab",
 "speed": 5.0
 }, {
 "frames": [{
@@ -40,7 +76,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_mmods")
 }],
 "loop": true,
-"name": &"run",
+"name": &"walk",
 "speed": 10.0
 }]
 
@@ -50,12 +86,44 @@ size = Vector2(10, 12)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mmods"]
 size = Vector2(6, 1)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_glbki"]
+atlas = ExtResource("1_pmqej")
+region = Rect2(116, 32, 16, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_8wnhh"]
 atlas = ExtResource("1_pmqej")
 region = Rect2(0, 32, 16, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhuoa"]
+atlas = ExtResource("1_pmqej")
+region = Rect2(96, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xioh2"]
+atlas = ExtResource("1_pmqej")
+region = Rect2(154, 31, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rnx3k"]
+atlas = ExtResource("1_pmqej")
+region = Rect2(20, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sb6ie"]
+atlas = ExtResource("1_pmqej")
+region = Rect2(38, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72hvn"]
+atlas = ExtResource("1_pmqej")
+region = Rect2(56, 32, 16, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_glbki"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_glbki")
+}],
+"loop": true,
+"name": &"crouch",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8wnhh")
@@ -63,14 +131,80 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fhuoa")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xioh2")
+}],
+"loop": true,
+"name": &"poll_grab",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rnx3k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sb6ie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72hvn")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 12.0
 }]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3arnh"]
+atlas = ExtResource("1_pmqej")
+region = Rect2(116, 140, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pmqej"]
 atlas = ExtResource("1_pmqej")
 region = Rect2(0, 140, 16, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_btw1g"]
+atlas = ExtResource("1_pmqej")
+region = Rect2(136, 180, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogss7"]
+atlas = ExtResource("1_pmqej")
+region = Rect2(96, 140, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fl7gy"]
+atlas = ExtResource("1_pmqej")
+region = Rect2(154, 139, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6k7yr"]
+atlas = ExtResource("1_pmqej")
+region = Rect2(20, 140, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nas7m"]
+atlas = ExtResource("1_pmqej")
+region = Rect2(38, 140, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4g25h"]
+atlas = ExtResource("1_pmqej")
+region = Rect2(56, 140, 16, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_5ue2y"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3arnh")
+}],
+"loop": true,
+"name": &"crouch",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pmqej")
@@ -78,6 +212,44 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btw1g")
+}],
+"loop": true,
+"name": &"fireball",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ogss7")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fl7gy")
+}],
+"loop": true,
+"name": &"poll_grab",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6k7yr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nas7m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4g25h")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 12.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wnnry"]
@@ -106,7 +278,6 @@ texture_filter = 1
 texture_repeat = 1
 position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_0ic7m")
-animation = &"idle"
 
 [node name="Small Area" type="Area2D" parent="Small Mario" unique_id=1759140544]
 position = Vector2(0, 7)
@@ -131,12 +302,14 @@ position = Vector2(0, -16)
 texture_filter = 1
 texture_repeat = 1
 sprite_frames = SubResource("SpriteFrames_glbki")
+animation = &"walk"
 
 [node name="Anim(Fire Mario)" type="AnimatedSprite2D" parent="Big Mario" unique_id=888674841]
 visible = false
 texture_filter = 1
 texture_repeat = 1
 sprite_frames = SubResource("SpriteFrames_5ue2y")
+animation = &"crouch"
 
 [node name="Big Area" type="Area2D" parent="Big Mario" unique_id=600271476]
 collision_mask = 162

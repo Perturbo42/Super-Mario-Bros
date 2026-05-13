@@ -12,7 +12,6 @@
 size = Vector2(60.06894, 20)
 
 [node name="1-1" type="Node2D" unique_id=1621613002]
-scale = Vector2(0.99885094, 1.00183)
 
 [node name="Markers" type="Node2D" parent="." unique_id=1122230741]
 scale = Vector2(1.0000001, 1)
