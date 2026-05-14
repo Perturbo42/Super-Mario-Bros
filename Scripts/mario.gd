@@ -91,7 +91,8 @@ func _physics_process(delta: float) -> void:
 			big_coll.set_deferred("disabled", false)
 			active_area = 1
 	if Input.is_action_pressed("crouch") and is_on_floor():
-		curr_anim().play("crouch")
+		if curr_state == 1 or curr_state == 2:
+			curr_anim().play("crouch")
 	
 	#handle fireball
 	if Input.is_action_just_pressed("action") and !Input.is_action_pressed("crouch"):

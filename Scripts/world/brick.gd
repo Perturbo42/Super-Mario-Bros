@@ -82,7 +82,7 @@ func _on_bounce_timeout() -> void:
 			mushroom.position = self.position
 			mushroom.spawned_from_brick()
 			get_tree().current_scene.call_deferred("add_child", mushroom)
-		elif Global.mario.curr_state == 1:
+		elif Global.mario.curr_state == 1 or Global.mario.curr_state == 2:
 			var flower = preload("res://Scenes/items/flower.tscn").instantiate()
 			flower.position = self.position
 			flower.spawned_from_brick()

@@ -32,7 +32,7 @@ func _physics_process(delta: float) -> void:
 		explode()
 	if global_position.y >= 490:
 		explode()
-	if global_position.x <= og_pos.x - 257 or global_position.x >= og_pos.x + 257 :
+	if global_position.x <= og_pos.x - 350 or global_position.x >= og_pos.x + 350 :
 		queue_explode = true
 
 func explode():
