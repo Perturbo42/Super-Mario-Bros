@@ -171,10 +171,6 @@ region = Rect2(116, 140, 16, 32)
 atlas = ExtResource("1_pmqej")
 region = Rect2(0, 140, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_btw1g"]
-atlas = ExtResource("1_pmqej")
-region = Rect2(136, 180, 16, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_ogss7"]
 atlas = ExtResource("1_pmqej")
 region = Rect2(96, 140, 16, 32)
@@ -211,14 +207,6 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_btw1g")
-}],
-"loop": true,
-"name": &"fireball",
 "speed": 5.0
 }, {
 "frames": [{
@@ -271,6 +259,7 @@ collision_mask = 12
 script = ExtResource("1_5ue2y")
 
 [node name="Small Mario" type="Node2D" parent="." unique_id=1535573355]
+visible = false
 position = Vector2(0, -7)
 
 [node name="Anim (Small Mario)" type="AnimatedSprite2D" parent="Small Mario" unique_id=1578362423]
@@ -297,21 +286,25 @@ position = Vector2(0, -5)
 shape = SubResource("RectangleShape2D_mmods")
 
 [node name="Big Mario" type="Node2D" parent="." unique_id=2120501886]
-visible = false
 position = Vector2(0, -16)
 
 [node name="Anim (Big Mario)" type="AnimatedSprite2D" parent="Big Mario" unique_id=835469358]
+visible = false
 texture_filter = 1
 texture_repeat = 1
 sprite_frames = SubResource("SpriteFrames_glbki")
 animation = &"walk"
 
 [node name="Anim(Fire Mario)" type="AnimatedSprite2D" parent="Big Mario" unique_id=888674841]
-visible = false
 texture_filter = 1
 texture_repeat = 1
 sprite_frames = SubResource("SpriteFrames_5ue2y")
-animation = &"crouch"
+animation = &"poll_grab"
+frame_progress = 0.1712043
+
+[node name="Fireball" type="Marker2D" parent="Big Mario" unique_id=1298170580]
+position = Vector2(6, -3)
+gizmo_extents = 1.0
 
 [node name="Big Area" type="Area2D" parent="Big Mario" unique_id=600271476]
 collision_mask = 418

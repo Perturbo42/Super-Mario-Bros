@@ -11,6 +11,7 @@ signal dead
 @onready var anim_small_mario: AnimatedSprite2D = $"Small Mario/Anim (Small Mario)"
 @onready var anim_big_mario: AnimatedSprite2D = $"Big Mario/Anim (Big Mario)"
 @onready var anim_fire_mario: AnimatedSprite2D = $"Big Mario/Anim(Fire Mario)"
+@onready var fireball_pos: Marker2D = $"Big Mario/Fireball"
 
 const ACCEL = 1200
 const MAX_SPEED = 250
@@ -65,6 +66,7 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += get_gravity().y * delta
+		curr_anim().play("jump")
 
 	# Handle jump.
 	if Input.is_action_just_pressed('jump') and is_on_floor():
@@ -91,11 +93,14 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("crouch") and is_on_floor():
 		curr_anim().play("crouch")
 	
-	if Input.is_action_just_pressed("action"):
+	#handle fireball
+	if Input.is_action_just_pressed("action") and !Input.is_action_pressed("crouch"):
 		if curr_state == 2:
 			fireball()
 	
-	
+	if Input.is_key_pressed(KEY_Q):
+		set_big()
+		fire_flower()
 
 func set_small():
 	var anim = curr_anim().animation
@@ -191,4 +196,14 @@ func curr_anim() -> AnimatedSprite2D:
 
 func fireball():
 	if num_of_fireballs <2:
+		num_of_fireballs += 1
+		var fireball = preload("res://Scenes/fireball.tscn").instantiate()
+		if !curr_anim().flip_h:
+			fireball.dir = 1
+		else:
+			fireball.dir = -1
+		fireball.init_speed = velocity.x
+		fireball.global_position = fireball_pos.global_position
+		fireball.exploded.connect(func(): num_of_fireballs -= 1)
+		get_tree().current_scene.call_deferred("add_child", fireball)
 		pass

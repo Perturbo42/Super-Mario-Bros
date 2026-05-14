@@ -22,6 +22,18 @@ region = Rect2(192, 185, 8, 8)
 atlas = ExtResource("1_xi7wk")
 region = Rect2(202, 185, 8, 8)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_0mxqg"]
+atlas = ExtResource("1_xi7wk")
+region = Rect2(172, 196, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jsbbf"]
+atlas = ExtResource("1_xi7wk")
+region = Rect2(190, 196, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgrri"]
+atlas = ExtResource("1_xi7wk")
+region = Rect2(208, 196, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_jsbbf"]
 animations = [{
 "frames": [{
@@ -40,7 +52,24 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0mxqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jsbbf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgrri")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 10.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ne4qj"]
+size = Vector2(8, 8)
 
 [node name="Fireball" type="CharacterBody2D" unique_id=1372053141]
 scale = Vector2(2, 2)
@@ -55,5 +84,12 @@ shape = SubResource("RectangleShape2D_0mxqg")
 texture_filter = 1
 texture_repeat = 1
 sprite_frames = SubResource("SpriteFrames_jsbbf")
-frame = 3
-frame_progress = 0.5698139
+
+[node name="Area2D" type="Area2D" parent="." unique_id=775639113]
+collision_layer = 512
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1854245500]
+shape = SubResource("RectangleShape2D_ne4qj")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
