@@ -32,7 +32,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			if mario.curr_state == 0:
 				mario.set_big()
 		elif state == 1:
-			Global.lives += 1
+			Global.game.update_lives(1)
 		queue_free()
 	pass # Replace with function body.
 

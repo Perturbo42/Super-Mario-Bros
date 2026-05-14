@@ -75,6 +75,7 @@ up={
 2d_physics/layer_7="Mario_Head"
 2d_physics/layer_8="Pipe"
 2d_physics/layer_9="Killzone"
+2d_physics/layer_10="Fireball"
 
 [physics]
 

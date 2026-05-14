@@ -1,0 +1,126 @@
+[gd_scene format=3 uid="uid://wfolqpbnuh3y"]
+
+[ext_resource type="Texture2D" uid="uid://cokh4cw72gs7k" path="res://Assets/GUI/mario_lives.png" id="1_1ne4b"]
+[ext_resource type="FontFile" uid="uid://c642yu18hn6hc" path="res://Assets/GUI/Super Mario Bros. NES.ttf" id="2_svor7"]
+[ext_resource type="Script" uid="uid://ka40sbdjgdkr" path="res://Scripts/game/lives_count.gd" id="3_o5tpl"]
+[ext_resource type="Texture2D" uid="uid://c2xl1v40isc66" path="res://Assets/GUI/coin_1.png" id="4_b2ag0"]
+[ext_resource type="Texture2D" uid="uid://copdhbcqegkb0" path="res://Assets/GUI/coin_2.png" id="5_i8ger"]
+[ext_resource type="Texture2D" uid="uid://dp1h737rh8uts" path="res://Assets/GUI/coin_3.png" id="6_vi63y"]
+[ext_resource type="Script" uid="uid://b7blq0oxr83jx" path="res://Scripts/game/coins_count.gd" id="7_4ft8f"]
+[ext_resource type="Script" uid="uid://dup6qmku835cu" path="res://Scripts/game/level_name.gd" id="8_pw18r"]
+[ext_resource type="Script" uid="uid://bxhavoaqyhmk7" path="res://Scripts/game/level_timer.gd" id="9_vgohm"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_ik3ii"]
+frames = 3
+frame_0/texture = ExtResource("4_b2ag0")
+frame_1/texture = ExtResource("5_i8ger")
+frame_1/duration = 0.5
+frame_2/texture = ExtResource("6_vi63y")
+frame_2/duration = 0.5
+
+[node name="Control" type="Control" unique_id=2056398139]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Lives" type="HBoxContainer" parent="." unique_id=993714330]
+layout_mode = 0
+offset_top = 24.0
+offset_right = 122.0
+offset_bottom = 56.0
+theme_override_constants/separation = 10
+
+[node name="TextureRect" type="TextureRect" parent="Lives" unique_id=1416180582]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 2
+texture = ExtResource("1_1ne4b")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="Lives" unique_id=1167959285]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_svor7")
+theme_override_font_sizes/font_size = 24
+text = "x 3"
+script = ExtResource("3_o5tpl")
+
+[node name="Coins" type="HBoxContainer" parent="." unique_id=296662695]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 24.0
+offset_right = 286.0
+offset_bottom = 56.0
+theme_override_constants/separation = 10
+
+[node name="TextureRect" type="TextureRect" parent="Coins" unique_id=126075172]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 2
+texture = SubResource("AnimatedTexture_ik3ii")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="Coins" unique_id=1969739070]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_svor7")
+theme_override_font_sizes/font_size = 24
+text = "x 99"
+script = ExtResource("7_4ft8f")
+
+[node name="Level" type="Control" parent="." unique_id=1989746664]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="World" type="Label" parent="Level" unique_id=1275130343]
+layout_mode = 0
+offset_left = 286.0
+offset_right = 406.0
+offset_bottom = 27.0
+theme_override_fonts/font = ExtResource("2_svor7")
+theme_override_font_sizes/font_size = 24
+text = "WORLD"
+
+[node name="Level Name" type="Label" parent="Level" unique_id=933265925]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 24.0
+offset_right = 390.0
+offset_bottom = 58.0
+theme_override_fonts/font = ExtResource("2_svor7")
+theme_override_font_sizes/font_size = 24
+text = "1-1"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("8_pw18r")
+
+[node name="Timer" type="Control" parent="." unique_id=1920421998]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Time" type="Label" parent="Timer" unique_id=1259521072]
+layout_mode = 0
+offset_left = 412.0
+offset_right = 508.0
+offset_bottom = 27.0
+theme_override_fonts/font = ExtResource("2_svor7")
+theme_override_font_sizes/font_size = 24
+text = "TIME"
+
+[node name="Timer" type="Label" parent="Timer" unique_id=857751891]
+layout_mode = 0
+offset_left = 425.0
+offset_top = 24.0
+offset_right = 497.0
+offset_bottom = 58.0
+theme_override_fonts/font = ExtResource("2_svor7")
+theme_override_font_sizes/font_size = 24
+text = "300"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("9_vgohm")
+
+[node name="Timer" type="Timer" parent="Timer/Timer" unique_id=1398981358]
+
+[connection signal="timeout" from="Timer/Timer/Timer" to="Timer/Timer" method="_on_timer_timeout"]

@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cvt1mi8ramvdf" path="res://Scenes/goomba.tscn" id="5_cbvcv"]
 [ext_resource type="PackedScene" uid="uid://bj34eveq6uy0w" path="res://Scenes/brick.tscn" id="6_ffcj7"]
 [ext_resource type="PackedScene" uid="uid://b1nhfng7odlkv" path="res://Scenes/pipe.tscn" id="7_w72y4"]
+[ext_resource type="PackedScene" uid="uid://wfolqpbnuh3y" path="res://Scenes/GUI.tscn" id="10_cbvcv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_81fxh"]
 size = Vector2(117.5, 20)
@@ -24,6 +25,8 @@ size = Vector2(60.06894, 20)
 
 [node name="1-1" type="Node2D" unique_id=1621613002]
 script = ExtResource("1_81fxh")
+level_name = "1-1"
+level_timer = 300
 
 [node name="Markers" type="Node2D" parent="." unique_id=1122230741]
 scale = Vector2(1.0000001, 1)
@@ -108,6 +111,7 @@ position = Vector2(1856.1326, 288.4721)
 req_act = "crouch"
 level_path = "uid://butwnfv8nwk7y"
 target_marker = "Spawn"
+same = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pipes/Pipe" unique_id=1607480905]
 scale = Vector2(1.0000004, 1)
@@ -359,3 +363,7 @@ position = Vector2(5584, 416)
 
 [node name="Goomba16" parent="Enemies" unique_id=2027051538 instance=ExtResource("5_cbvcv")]
 position = Vector2(5632, 416)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=523520005]
+
+[node name="Control" parent="CanvasLayer" unique_id=2056398139 instance=ExtResource("10_cbvcv")]

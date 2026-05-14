@@ -23,6 +23,7 @@ var curr_state: int = 0
 var jump_time: float = 0.0 
 var dir: float = 0.0
 var invincible: bool = false
+var num_of_fireballs: int = 0
 
 func _ready() -> void: 
 	Global.mario = self
@@ -90,10 +91,9 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("crouch") and is_on_floor():
 		curr_anim().play("crouch")
 	
-	if Input.is_key_pressed(KEY_Q):
-		set_big()
-	if Input.is_key_pressed(KEY_E):
-		set_small()
+	if Input.is_action_just_pressed("action"):
+		if curr_state == 2:
+			fireball()
 	
 	
 
@@ -188,3 +188,7 @@ func curr_anim() -> AnimatedSprite2D:
 	elif curr_state == 2:
 		return anim_fire_mario
 	return null
+
+func fireball():
+	if num_of_fireballs <2:
+		pass

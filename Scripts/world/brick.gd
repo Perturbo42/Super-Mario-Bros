@@ -51,6 +51,7 @@ func bounce():
 		coin.visible = true
 		coin.play("default")
 		coin_speed = -360.00
+		Global.game.update_coins(1)
 	
 	#Brick state
 	if brick_state == -1:

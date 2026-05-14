@@ -1,15 +1,19 @@
 [gd_scene format=4 uid="uid://butwnfv8nwk7y"]
 
+[ext_resource type="Script" uid="uid://kbyp1wsqtomd" path="res://Scripts/game/game.gd" id="1_63alo"]
 [ext_resource type="Texture2D" uid="uid://bhou25mjurv83" path="res://Assets/NES - Super Mario Bros. - Stages - World 1-1 - 복사본.png" id="1_ldd4c"]
 [ext_resource type="PackedScene" uid="uid://l6umrmi4yfg6" path="res://Scenes/mario.tscn" id="2_63alo"]
 [ext_resource type="TileSet" uid="uid://bxyj1ky7swukf" path="res://Assets/Tileset/new_tile_set.tres" id="3_837wg"]
 [ext_resource type="PackedScene" uid="uid://cir5tdom6xnfj" path="res://Scenes/items/coin.tscn" id="4_f6nhj"]
 [ext_resource type="PackedScene" uid="uid://b1nhfng7odlkv" path="res://Scenes/pipe.tscn" id="5_8wre8"]
+[ext_resource type="PackedScene" uid="uid://wfolqpbnuh3y" path="res://Scenes/GUI.tscn" id="7_837wg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_13r3n"]
 size = Vector2(20, 30)
 
 [node name="1-1-pipe" type="Node2D" unique_id=1658633870]
+script = ExtResource("1_63alo")
+level_name = "1-1"
 
 [node name="Markers" type="Node2D" parent="." unique_id=216019834]
 
@@ -104,7 +108,10 @@ position = Vector2(126, 97.5)
 req_act = "right"
 level_path = "uid://dowrwrhgkguin"
 target_marker = "Pipe_Exit"
+same = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pipes/Pipe" unique_id=490125714]
 position = Vector2(1, -1.5)
 shape = SubResource("RectangleShape2D_13r3n")
+
+[node name="Control" parent="." unique_id=2056398139 instance=ExtResource("7_837wg")]
