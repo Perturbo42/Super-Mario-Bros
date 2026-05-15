@@ -49,5 +49,6 @@ func explode():
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.owner is Enemy:
 		area.owner.flip()
+		Global.game.update_coins(1)
 		explode()
 	pass # Replace with function body.

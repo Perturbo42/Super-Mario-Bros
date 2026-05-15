@@ -199,12 +199,14 @@ func fireball():
 	if num_of_fireballs <2:
 		num_of_fireballs += 1
 		var fireball = preload("res://Scenes/fireball.tscn").instantiate()
+		fireball.global_position = fireball_pos.global_position
 		if !curr_anim().flip_h:
 			fireball.dir = 1
 		else:
 			fireball.dir = -1
+			fireball.global_position.x -= 24
+		print(fireball.global_position)
 		fireball.init_speed = velocity.x
-		fireball.global_position = fireball_pos.global_position
 		fireball.exploded.connect(func(): num_of_fireballs -= 1)
 		get_tree().current_scene.call_deferred("add_child", fireball)
 		pass
