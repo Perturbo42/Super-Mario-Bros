@@ -1,5 +1,6 @@
 class_name Camera extends Camera2D
 var last_pos: float
+var stop: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -11,6 +12,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if stop:
+		return
 	global_position.x = Global.mario.global_position.x 
 	if Global.mario.global_position.x < last_pos :
 		global_position.x = last_pos

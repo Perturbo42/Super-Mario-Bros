@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dlasiiy22a17d"]
+
+[ext_resource type="Script" uid="uid://kbyp1wsqtomd" path="res://Scripts/game/game.gd" id="1_fab5u"]
+[ext_resource type="PackedScene" uid="uid://l6umrmi4yfg6" path="res://Scenes/mario.tscn" id="1_y4nig"]
+
+[node name="1-2" type="Node2D" unique_id=1348426010]
+script = ExtResource("1_fab5u")
+level_name = "1-2"
+level_timer = 300
+
+[node name="Markers" type="Node2D" parent="." unique_id=816534468]
+
+[node name="Spawn" type="Marker2D" parent="Markers" unique_id=1820911950]
+position = Vector2(277, 160)
+
+[node name="Mario" parent="." unique_id=339477559 instance=ExtResource("1_y4nig")]

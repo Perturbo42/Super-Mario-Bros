@@ -76,6 +76,8 @@ up={
 2d_physics/layer_8="Pipe"
 2d_physics/layer_9="Killzone"
 2d_physics/layer_10="Fireball"
+2d_physics/layer_11="Flagpole"
+2d_physics/layer_12="Level_Finished"
 
 [physics]
 

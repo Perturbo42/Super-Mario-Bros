@@ -25,6 +25,7 @@ var jump_time: float = 0.0
 var dir: float = 0.0
 var invincible: bool = false
 var num_of_fireballs: int = 0
+var is_on_flag: bool = false
 
 func _ready() -> void: 
 	Global.mario = self
@@ -33,6 +34,11 @@ func _ready() -> void:
 	var marker = get_tree().current_scene.find_child(Global.target_marker_name, true, false)
 	global_position = marker.global_position
 	curr_anim().play("default")
+
+func _process(delta: float) -> void:
+	if Input.is_key_pressed(KEY_E):
+		global_position.x = 6000
+		global_position.y = 0
 
 func _physics_process(delta: float) -> void:
 	move_and_slide()
@@ -45,6 +51,12 @@ func _physics_process(delta: float) -> void:
 		if position.y >= 550:
 			dead.emit()
 		return
+	
+	#if mario is on flagpole
+	if is_on_flag:
+		velocity.y = 256
+		return
+	
 	
 	#moving left and right
 	dir = Input.get_axis('left', 'right')
@@ -210,3 +222,12 @@ func fireball():
 		fireball.exploded.connect(func(): num_of_fireballs -= 1)
 		get_tree().current_scene.call_deferred("add_child", fireball)
 		pass
+
+func level_finished(pos: Vector2):
+	scale.x *= -1
+	global_position = pos
+	Global.camera.stop = true
+	await get_tree().create_timer(1).timeout
+	scale.x *= -1
+	curr_anim().play("walk")
+	velocity.x = 200

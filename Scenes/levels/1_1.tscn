@@ -9,7 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://cvt1mi8ramvdf" path="res://Scenes/goomba.tscn" id="5_cbvcv"]
 [ext_resource type="PackedScene" uid="uid://bj34eveq6uy0w" path="res://Scenes/brick.tscn" id="6_ffcj7"]
 [ext_resource type="PackedScene" uid="uid://b1nhfng7odlkv" path="res://Scenes/pipe.tscn" id="7_w72y4"]
+[ext_resource type="PackedScene" uid="uid://qy77teh280pn" path="res://Scenes/level_finished.tscn" id="9_gu16e"]
 [ext_resource type="PackedScene" uid="uid://wfolqpbnuh3y" path="res://Scenes/GUI.tscn" id="10_cbvcv"]
+[ext_resource type="PackedScene" uid="uid://c0765gp3rklmo" path="res://Scenes/flagpole.tscn" id="11_ffcj7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_81fxh"]
 size = Vector2(117.5, 20)
@@ -22,6 +24,9 @@ size = Vector2(84, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j66fu"]
 size = Vector2(60.06894, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i123r"]
+size = Vector2(20, 64)
 
 [node name="1-1" type="Node2D" unique_id=1621613002]
 script = ExtResource("1_81fxh")
@@ -311,8 +316,18 @@ position = Vector2(2064, 272)
 brick_state = -1
 contains = 3
 
+[node name="Flagpole" parent="." unique_id=1702184473 instance=ExtResource("11_ffcj7")]
+position = Vector2(6352, 416)
+
+[node name="Level_Finished" parent="." unique_id=2020556032 instance=ExtResource("9_gu16e")]
+position = Vector2(6553, 383)
+next_level_path = "uid://dlasiiy22a17d"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level_Finished" unique_id=191914599]
+shape = SubResource("RectangleShape2D_i123r")
+
 [node name="Mario" parent="." unique_id=339477559 instance=ExtResource("4_81fxh")]
-position = Vector2(96, 416)
+position = Vector2(6342, 390)
 
 [node name="Enemies" type="Node2D" parent="." unique_id=380217083]
 

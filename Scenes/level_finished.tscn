@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://qy77teh280pn"]
+
+[ext_resource type="Script" uid="uid://cafmbwxaiewo7" path="res://Scripts/level_finished.gd" id="1_2b7xb"]
+
+[node name="Level_Finished" type="Area2D" unique_id=2020556032]
+collision_layer = 2048
+script = ExtResource("1_2b7xb")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
