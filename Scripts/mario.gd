@@ -16,11 +16,15 @@ signal dead
 const WALK_SPEED = 160
 const RUN_SPEED = 250
 const GROUND_ACCEL = 1200
-const AIR_ACCEL = 500
 const GROUND_DECEL = 1400
+const AIR_ACCEL = 500
+const AIR_DECEL = 0
 
 const JUMP_FORCE: float = 550
 const JUMP_CUT_MULT = 0.5
+const FALL_MULT = 1.5
+const COYOTE_TIME = 0.1
+const JUMP_BUFFER_TIME = 0.1
 const DEATH_GRAVITY = 980.0
 const FLAG_SLIDE_SPEED = 256
 
@@ -44,6 +48,8 @@ var invincible: bool = false
 var num_of_fireballs: int = 0
 var flag_anim_x: float = 0.0
 var dir: float = 0.0
+var coyote_timer: float = 0.0
+var jump_buffer_timer := 0.0
 
 # jump input
 var jump_pressed: bool = false
@@ -68,13 +74,9 @@ func _ready() -> void:
 	global_position = marker.global_position
 	curr_anim().play("default")
 
-func _process(delta: float) -> void:
-	if Input.is_key_pressed(KEY_E):
-		global_position.x = 6000
-		global_position.y = 0
-
 func _physics_process(delta: float) -> void:
 	read_input()
+	handle_timer(delta)
 	handle_state(delta)
 	
 	if curr_state == PlayerState.DEAD:
@@ -93,9 +95,6 @@ func _physics_process(delta: float) -> void:
 	
 	handle_anim()
 	
-	if Input.is_key_pressed(KEY_Q):
-		apply_form(MarioForm.FIRE)
-	
 	move_and_slide()
 
 func read_input():
@@ -111,6 +110,17 @@ func read_input():
 	
 	run_held = Input.is_action_pressed("action")
 	action_pressed = Input.is_action_just_pressed("action")
+
+func handle_timer(delta):
+	if is_on_floor():
+		coyote_timer = COYOTE_TIME
+	else:
+		coyote_timer -= delta
+	
+	if jump_pressed:
+		jump_buffer_timer = JUMP_BUFFER_TIME
+	else:
+		jump_buffer_timer -= delta
 
 func handle_state(delta: float):
 	match curr_state:
@@ -167,18 +177,24 @@ func handle_horiz(delta: float):
 		target_speed = RUN_SPEED
 	
 	var accel = GROUND_ACCEL if is_on_floor() else AIR_ACCEL
+	var decel = GROUND_DECEL if is_on_floor() else AIR_DECEL
 	if dir != 0.0:
 		velocity.x = move_toward(velocity.x, dir * target_speed, accel * delta)
 	else:
-		velocity.x = move_toward(velocity.x, 0, GROUND_DECEL * delta)
+		velocity.x = move_toward(velocity.x, 0, decel * delta)
 
 func handle_gravity(delta):
 	if not is_on_floor():
-		velocity.y += get_gravity().y * delta
+		if velocity.y > 0:
+			velocity.y += get_gravity().y * FALL_MULT * delta
+		else:
+			velocity.y += get_gravity().y * delta
 
 func handle_jump():
-	if jump_pressed and is_on_floor():
+	if jump_buffer_timer > 0.0 and coyote_timer > 0.0:
 		velocity.y = -JUMP_FORCE
+		jump_buffer_timer = 0.0
+		coyote_timer = 0.0
 	if jump_released and velocity.y < 0:
 		velocity.y *= JUMP_CUT_MULT
 
@@ -208,8 +224,9 @@ func handle_anim():
 		play_anim("default")
 
 func play_anim(anim_name: String):
-	if curr_anim().animation != anim_name:
-		curr_anim().play(anim_name)
+	var anim = curr_anim()
+	if anim.animation != anim_name:
+		anim.play(anim_name)
 
 func apply_form(new_form: MarioForm):
 	curr_form = new_form
@@ -320,5 +337,5 @@ func level_finished(pos: Vector2):
 	Global.camera.stop = true
 	await get_tree().create_timer(1).timeout
 	scale.x *= -1
-	curr_anim().play("walk")
+	play_anim("walk")
 	flag_anim_x = 200
