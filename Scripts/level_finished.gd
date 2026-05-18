@@ -10,7 +10,7 @@ func _on_area_entered(area: Area2D) -> void:
 	if area.owner is Mario:
 		is_changing_scene = true
 		var mario = area.owner
-		Global.mario_state = Global.mario.curr_state
+		Global.mario_form = Global.mario.curr_form
 		Global.target_marker_name = "Spawn"
 		Global.same_level = false
 		get_tree().call_deferred("change_scene_to_file", next_level_path)

@@ -14,9 +14,9 @@ func _process(delta: float) -> void:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.owner is Mario:
 		var mario = area.owner
-		if !mario.is_on_flag:
+		if mario.curr_state != Mario.PlayerState.FLAGPOLE:
 			mario.velocity = Vector2.ZERO
-			mario.is_on_flag = true
+			mario.curr_state = Mario.PlayerState.FLAGPOLE
 			mario.curr_anim().play("poll_grab")
 			var tween = create_tween()
 			tween.tween_property(flag, "position", Vector2(-9,-24), 1).set_trans(Tween.TRANS_LINEAR)

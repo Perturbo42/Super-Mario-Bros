@@ -77,12 +77,12 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 func _on_bounce_timeout() -> void:
 	#Contains
 	if contains == 2:
-		if Global.mario.curr_state == 0:
+		if Global.mario.curr_form == Mario.MarioForm.SMALL:
 			var mushroom = preload("res://Scenes/items/mushroom.tscn").instantiate()
 			mushroom.position = self.position
 			mushroom.spawned_from_brick()
 			get_tree().current_scene.call_deferred("add_child", mushroom)
-		elif Global.mario.curr_state == 1 or Global.mario.curr_state == 2:
+		elif Global.mario.curr_form == Mario.MarioForm.BIG or Global.mario.curr_form == Mario.MarioForm.FIRE:
 			var flower = preload("res://Scenes/items/flower.tscn").instantiate()
 			flower.position = self.position
 			flower.spawned_from_brick()

@@ -173,10 +173,6 @@ func handle_actions():
 			fireball()
 
 func handle_anim():
-	if not is_on_floor():
-		play_anim("jump")
-		return
-	
 	if velocity.x < -5:
 		curr_anim().flip_h = true
 	elif velocity.x > 5:
@@ -188,6 +184,9 @@ func handle_anim():
 	if curr_state == PlayerState.CROUCH:
 		play_anim("crouch")
 		return
+	if not is_on_floor():
+		play_anim("jump")
+		return
 	if abs(velocity.x) > 5:
 		play_anim("walk")
 	else:
@@ -197,38 +196,48 @@ func play_anim(anim_name: String):
 	if curr_anim().animation != anim_name:
 		curr_anim().play(anim_name)
 
-func set_small():
-	var anim = curr_anim().animation
-	curr_form = MarioForm.SMALL
-	active_area = 0
-	small_head.set_deferred("monitorable", true)
-	big_head.set_deferred("monitorable", false)
-	small_coll.set_deferred("disabled", false)
-	big_coll.set_deferred("disabled", true)
-	small_mario.visible = true
+func apply_form():
+	small_mario.visible = false
 	big_mario.visible = false
-	curr_anim().play(anim)
-	
+	anim_big_mario.visible = false
+	anim_fire_mario.visible = false
+
+	match curr_form:
+		MarioForm.SMALL:
+			small_mario.visible = true
+			small_head.set_deferred("monitorable", true)
+			big_head.set_deferred("monitorable", false)
+			small_coll.set_deferred("disabled", false)
+			big_coll.set_deferred("disabled", true)
+			active_area = 0
+		MarioForm.BIG:
+			big_mario.visible = true
+			anim_big_mario.visible = true
+			small_head.set_deferred("monitorable", false)
+			big_head.set_deferred("monitorable", true)
+			small_coll.set_deferred("disabled", true)
+			big_coll.set_deferred("disabled", false)
+			active_area = 1
+		MarioForm.FIRE:
+			big_mario.visible = true
+			anim_fire_mario.visible = true
+			small_head.set_deferred("monitorable", false)
+			big_head.set_deferred("monitorable", true)
+			small_coll.set_deferred("disabled", true)
+			big_coll.set_deferred("disabled", false)
+			active_area = 1
+
+func set_small():
+	curr_form = MarioForm.SMALL
+	apply_form()
 
 func set_big():
-	var anim = curr_anim().animation
 	curr_form = MarioForm.BIG
-	active_area = 1
-	small_head.set_deferred("monitorable", false)
-	big_head.set_deferred("monitorable", true)
-	small_coll.set_deferred("disabled", true)
-	big_coll.set_deferred("disabled", false)
-	small_mario.visible = false
-	big_mario.visible = true
-	curr_anim().play(anim)
+	apply_form()
 
 func fire_flower():
-	var anim = curr_anim().animation
 	curr_form = MarioForm.FIRE
-	anim_big_mario.visible = false
-	anim_fire_mario.visible = true
-	curr_anim().play(anim)
-
+	apply_form()
 
 func take_damage():
 	if invincible:

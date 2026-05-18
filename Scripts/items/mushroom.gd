@@ -29,7 +29,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.owner is Mario:
 		var mario = area.owner
 		if state == 0:
-			if mario.curr_state == 0:
+			if mario.curr_form == Mario.MarioForm.SMALL:
 				mario.set_big()
 		elif state == 1:
 			Global.game.update_lives(1)
