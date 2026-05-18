@@ -15,9 +15,11 @@ signal dead
 
 const ACCEL = 1200
 const MAX_SPEED = 250
-const JUMP_FORCE: float = 500
+const JUMP_FORCE: float = 550
+const JUMP_CUT_MULT = 0.5
 const DEATH_GRAVITY = 980.0
 const FLAG_SLIDE_SPEED = 256
+
 enum MarioForm {
 	SMALL,
 	BIG,
@@ -36,7 +38,7 @@ var active_area: int
 var jump_time: float = 0.0 
 var invincible: bool = false
 var num_of_fireballs: int = 0
-
+var flag_anim_x: float = 0.0
 var dir: float = 0.0
 
 # jump input
@@ -55,6 +57,7 @@ var action_pressed: bool = false
 
 func _ready() -> void: 
 	Global.mario = self
+	curr_state = PlayerState.NORMAL
 	curr_form = Global.mario_form
 	change_form()
 	var marker = get_tree().current_scene.find_child(Global.target_marker_name, true, false)
@@ -71,9 +74,11 @@ func _physics_process(delta: float) -> void:
 	handle_state(delta)
 	
 	if curr_state == PlayerState.DEAD:
+		handle_anim()
 		move_and_slide()
 		return
 	if curr_state == PlayerState.FLAGPOLE:
+		
 		move_and_slide()
 		return
 	
@@ -85,8 +90,7 @@ func _physics_process(delta: float) -> void:
 	handle_anim()
 	
 	if Input.is_key_pressed(KEY_Q):
-		set_big()
-		fire_flower()
+		apply_form(MarioForm.FIRE)
 	
 	move_and_slide()
 
@@ -150,7 +154,7 @@ func handle_dead_state(delta: float):
 		dead.emit()
 
 func handle_flagpole_state(_delta: float):
-	velocity.x = 0
+	velocity.x = flag_anim_x
 	velocity.y = FLAG_SLIDE_SPEED
 
 func handle_horiz(delta: float):
@@ -166,6 +170,8 @@ func handle_gravity(delta):
 func handle_jump():
 	if jump_pressed and is_on_floor():
 		velocity.y = -JUMP_FORCE
+	if jump_released and velocity.y < 0:
+		velocity.y *= JUMP_CUT_MULT
 
 func handle_actions():
 	if action_pressed and !crouch_held:
@@ -196,7 +202,8 @@ func play_anim(anim_name: String):
 	if curr_anim().animation != anim_name:
 		curr_anim().play(anim_name)
 
-func apply_form():
+func apply_form(new_form: MarioForm):
+	curr_form = new_form
 	small_mario.visible = false
 	big_mario.visible = false
 	anim_big_mario.visible = false
@@ -227,18 +234,6 @@ func apply_form():
 			big_coll.set_deferred("disabled", false)
 			active_area = 1
 
-func set_small():
-	curr_form = MarioForm.SMALL
-	apply_form()
-
-func set_big():
-	curr_form = MarioForm.BIG
-	apply_form()
-
-func fire_flower():
-	curr_form = MarioForm.FIRE
-	apply_form()
-
 func take_damage():
 	if invincible:
 		return
@@ -247,7 +242,7 @@ func take_damage():
 			die()
 		elif curr_form == MarioForm.BIG or curr_form == MarioForm.FIRE:
 			invincible = true
-			set_small()
+			apply_form(MarioForm.SMALL)
 			anim_big_mario.visible = true
 			anim_fire_mario.visible = false
 			await get_tree().create_timer(1.0).timeout
@@ -256,7 +251,7 @@ func take_damage():
 func die():
 	if curr_state == PlayerState.DEAD:
 		return
-	set_small()
+	apply_form(MarioForm.SMALL)
 	curr_state = PlayerState.DEAD
 	small_coll.set_deferred("disabled", true)
 	big_coll.set_deferred("disabled", true)
@@ -282,12 +277,11 @@ func _on_any_area_entered(area: Area2D, hit: int) -> void:
 
 func change_form():
 	if curr_form == MarioForm.SMALL:
-		set_small()
+		apply_form(MarioForm.SMALL)
 	elif curr_form == MarioForm.BIG:
-		set_big()
+		apply_form(MarioForm.BIG)
 	elif curr_form == MarioForm.FIRE:
-		set_big()
-		fire_flower()
+		apply_form(MarioForm.FIRE)
 
 func curr_anim() -> AnimatedSprite2D:
 	if curr_form == MarioForm.SMALL:
@@ -321,4 +315,4 @@ func level_finished(pos: Vector2):
 	await get_tree().create_timer(1).timeout
 	scale.x *= -1
 	curr_anim().play("walk")
-	velocity.x = 200
+	flag_anim_x = 200

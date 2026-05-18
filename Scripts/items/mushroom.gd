@@ -30,7 +30,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		var mario = area.owner
 		if state == 0:
 			if mario.curr_form == Mario.MarioForm.SMALL:
-				mario.set_big()
+				mario.apply_form(mario.MarioForm.BIG)
 		elif state == 1:
 			Global.game.update_lives(1)
 		queue_free()

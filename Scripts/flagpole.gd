@@ -16,6 +16,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		var mario = area.owner
 		if mario.curr_state != Mario.PlayerState.FLAGPOLE:
 			mario.velocity = Vector2.ZERO
+			mario.flag_anim_x = 0
 			mario.curr_state = Mario.PlayerState.FLAGPOLE
 			mario.curr_anim().play("poll_grab")
 			var tween = create_tween()

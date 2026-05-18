@@ -17,9 +17,9 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.owner is Mario:
 		var mario = area.owner
 		if mario.curr_form == Mario.MarioForm.SMALL:
-			mario.set_big()
+			mario.apply_form(mario.MarioForm.BIG)
 		elif mario.curr_form == Mario.MarioForm.BIG:
-			mario.fire_flower()
+			mario.apply_form(mario.MarioForm.FIRE)
 		queue_free()
 	pass # Replace with function body.
 
