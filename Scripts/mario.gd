@@ -13,8 +13,12 @@ signal dead
 @onready var anim_fire_mario: AnimatedSprite2D = $"Big Mario/Anim(Fire Mario)"
 @onready var fireball_pos: Marker2D = $"Big Mario/Fireball"
 
-const ACCEL = 1200
-const MAX_SPEED = 250
+const WALK_SPEED = 160
+const RUN_SPEED = 250
+const GROUND_ACCEL = 1200
+const AIR_ACCEL = 500
+const GROUND_DECEL = 1400
+
 const JUMP_FORCE: float = 550
 const JUMP_CUT_MULT = 0.5
 const DEATH_GRAVITY = 980.0
@@ -57,9 +61,9 @@ var action_pressed: bool = false
 
 func _ready() -> void: 
 	Global.mario = self
-	curr_state = PlayerState.NORMAL
+	change_state(PlayerState.NORMAL)
 	curr_form = Global.mario_form
-	change_form()
+	apply_form(curr_form)
 	var marker = get_tree().current_scene.find_child(Global.target_marker_name, true, false)
 	global_position = marker.global_position
 	curr_anim().play("default")
@@ -131,7 +135,7 @@ func handle_crouch_state():
 		exit_crouch_state()
 
 func enter_crouch_state():
-	curr_state = PlayerState.CROUCH
+	change_state(PlayerState.CROUCH)
 	small_head.monitorable = true
 	big_head.monitorable = false
 	small_coll.set_deferred("disabled", false)
@@ -139,7 +143,7 @@ func enter_crouch_state():
 	active_area = 0
 
 func exit_crouch_state():
-	curr_state = PlayerState.NORMAL
+	change_state(PlayerState.NORMAL)
 	small_head.monitorable = false
 	big_head.monitorable = true
 	small_coll.set_deferred("disabled", true)
@@ -158,10 +162,15 @@ func handle_flagpole_state(_delta: float):
 	velocity.y = FLAG_SLIDE_SPEED
 
 func handle_horiz(delta: float):
+	var target_speed = WALK_SPEED
+	if run_held:
+		target_speed = RUN_SPEED
+	
+	var accel = GROUND_ACCEL if is_on_floor() else AIR_ACCEL
 	if dir != 0.0:
-		velocity.x = move_toward(velocity.x, dir * MAX_SPEED, ACCEL * delta)
+		velocity.x = move_toward(velocity.x, dir * target_speed, accel * delta)
 	else:
-		velocity.x = move_toward(velocity.x, 0, ACCEL * delta)
+		velocity.x = move_toward(velocity.x, 0, GROUND_DECEL * delta)
 
 func handle_gravity(delta):
 	if not is_on_floor():
@@ -252,7 +261,7 @@ func die():
 	if curr_state == PlayerState.DEAD:
 		return
 	apply_form(MarioForm.SMALL)
-	curr_state = PlayerState.DEAD
+	change_state(PlayerState.DEAD)
 	small_coll.set_deferred("disabled", true)
 	big_coll.set_deferred("disabled", true)
 	small_head.set_deferred("monitorable", false)
@@ -275,13 +284,10 @@ func _on_any_area_entered(area: Area2D, hit: int) -> void:
 				take_damage()
 	pass # Replace with function body.
 
-func change_form():
-	if curr_form == MarioForm.SMALL:
-		apply_form(MarioForm.SMALL)
-	elif curr_form == MarioForm.BIG:
-		apply_form(MarioForm.BIG)
-	elif curr_form == MarioForm.FIRE:
-		apply_form(MarioForm.FIRE)
+func change_state(new_state: PlayerState):
+	if curr_state == new_state:
+		return
+	curr_state = new_state
 
 func curr_anim() -> AnimatedSprite2D:
 	if curr_form == MarioForm.SMALL:

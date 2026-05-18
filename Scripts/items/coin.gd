@@ -8,6 +8,6 @@ func _ready() -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.owner is Mario:
-		Global.coin += 1
+		Global.game.update_coins(1)
 		queue_free()
 	pass # Replace with function body.

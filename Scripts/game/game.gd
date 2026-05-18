@@ -13,7 +13,7 @@ func _ready() -> void:
 
 func mario_died():
 	update_lives(-1)
-	get_tree().reload_current_scene()
+	get_tree().call_deferred("reload_current_scene")
 	pass
 
 func update_lives(n: int):
