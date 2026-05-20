@@ -13,6 +13,7 @@ func _ready() -> void:
 
 func mario_died():
 	update_lives(-1)
+	Global.mario_form = Global.MarioForm.SMALL
 	Global.same_level = false
 	Global.target_marker_name = "Spawn"
 	get_tree().call_deferred("reload_current_scene")
