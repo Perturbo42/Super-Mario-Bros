@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://butwnfv8nwk7y"]
 
 [ext_resource type="Script" uid="uid://kbyp1wsqtomd" path="res://Scripts/game/game.gd" id="1_63alo"]
-[ext_resource type="Texture2D" uid="uid://bhou25mjurv83" path="res://Assets/NES - Super Mario Bros. - Stages - World 1-1 - 복사본.png" id="1_ldd4c"]
+[ext_resource type="Texture2D" uid="uid://bhou25mjurv83" path="res://Assets/Levels/NES - Super Mario Bros. - Stages - World 1-1 - 복사본.png" id="1_ldd4c"]
 [ext_resource type="PackedScene" uid="uid://l6umrmi4yfg6" path="res://Scenes/mario.tscn" id="2_63alo"]
 [ext_resource type="TileSet" uid="uid://bxyj1ky7swukf" path="res://Assets/Tileset/new_tile_set.tres" id="3_837wg"]
 [ext_resource type="PackedScene" uid="uid://cir5tdom6xnfj" path="res://Scenes/items/coin.tscn" id="4_f6nhj"]

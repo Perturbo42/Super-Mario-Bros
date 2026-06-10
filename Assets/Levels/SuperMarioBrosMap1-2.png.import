@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhou25mjurv83"
-path="res://.godot/imported/NES - Super Mario Bros. - Stages - World 1-1 - 복사본.png-343fcf74d3cd4e89605a95a69cbb2dbe.ctex"
+uid="uid://c24rtm0632iqc"
+path="res://.godot/imported/SuperMarioBrosMap1-2.png-8f39961645d196c370f38475dd56d875.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/NES - Super Mario Bros. - Stages - World 1-1 - 복사본.png"
-dest_files=["res://.godot/imported/NES - Super Mario Bros. - Stages - World 1-1 - 복사본.png-343fcf74d3cd4e89605a95a69cbb2dbe.ctex"]
+source_file="res://Assets/Levels/SuperMarioBrosMap1-2.png"
+dest_files=["res://.godot/imported/SuperMarioBrosMap1-2.png-8f39961645d196c370f38475dd56d875.ctex"]
 
 [params]
 

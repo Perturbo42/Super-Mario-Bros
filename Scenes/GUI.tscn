@@ -18,7 +18,7 @@ frame_1/duration = 0.5
 frame_2/texture = ExtResource("6_vi63y")
 frame_2/duration = 0.5
 
-[node name="Control" type="Control" unique_id=2056398139]
+[node name="GUI" type="Control" unique_id=2056398139]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
